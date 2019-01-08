@@ -1,0 +1,5 @@
+.idea
+node_modules
+*.log
+.sass-cach
+public/js/*.hot-update.* 

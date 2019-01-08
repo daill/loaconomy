@@ -1,0 +1,14 @@
+{
+  "environment": "development",
+  "server": {
+    "address": "127.0.0.1:8890"
+  },
+  "context": {
+    "timeout": 2
+  },
+  "database": {
+    "url": "http://127.0.0.1:9200",
+    "pass": "password",
+    "name": "article"
+  }
+}

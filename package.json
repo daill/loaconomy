@@ -1,0 +1,44 @@
+{
+  "name": "Locaonomy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devbuild": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.daill.de:9822/daill/oggy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "connected-react-router": "latest",
+    "css-loader": "^1.0.0",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0",
+    "react-router": "latest",
+    "redux": "^4.0.0-rc.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "history": "^4.7.2",
+    "jquery": "^3.3.1",
+    "react-redux": "latest",
+    "react-router-dom": "latest",
+    "reactstrap": "^7.0.2",
+    "warning": "^4.0.1"
+  }
+}
