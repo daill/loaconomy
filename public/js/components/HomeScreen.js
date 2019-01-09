@@ -1,20 +1,32 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 import $ from "jquery";
+import {getAllItems} from '../actions/itemsAction';
 import '../../ext/js/bootstrap';
 
 
-export default class Home extends React.Component {
+class HomeScreen extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
+        this.props.dispatch(getAllItems());
+
     }
 
     componentDidMount() {
-
     }
 
     render() {
+        let items = [];
+        if (this.props.items && this.props.items.data) {
+            for (let i = 0; i < this.props.items.data.length; i++) {
+                items.push(<div>{this.props.items.data[i].name}</div>)
+            }
+        }
+
+        console.log(this.props)
+
         return (<div>
             <header>
                 <nav className="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
@@ -47,7 +59,7 @@ export default class Home extends React.Component {
                                         tutorials</a>
                                 </li>
                             </ul>
-                            
+
                             <ul className="navbar-nav nav-flex-icons">
                                 <li className="nav-item">
                                     <a href="https://www.facebook.com/mdbootstrap" className="nav-link waves-effect" target="_blank">
@@ -97,23 +109,14 @@ export default class Home extends React.Component {
                 </div>
                 
                 <div className="row wow fadeIn">
-
-                    
                     <div className="col-md-9 mb-4">
-
-                        
                         <div className="card">
-
-                            
                             <div className="card-body">
-
-                                <canvas id="myChart"></canvas>
-
+                                <form>
+                                    
+                                </form>
                             </div>
-
                         </div>
-                        
-
                     </div>
                     
 
@@ -181,19 +184,10 @@ export default class Home extends React.Component {
 
                 
                 <div className="row wow fadeIn">
-
-                    
                     <div className="col-md-6 mb-4">
-
-                        
                         <div className="card">
-
-                            
                             <div className="card-body">
-
-                                
                                 <table className="table table-hover">
-                                    
                                     <thead className="blue-grey lighten-4">
                                     <tr>
                                         <th>#</th>
@@ -202,9 +196,7 @@ export default class Home extends React.Component {
                                         <th>Dolor</th>
                                     </tr>
                                     </thead>
-                                    
 
-                                    
                                     <tbody>
                                     <tr>
                                         <th scope="row">1</th>
@@ -225,28 +217,15 @@ export default class Home extends React.Component {
                                         <td>Cell 9</td>
                                     </tr>
                                     </tbody>
-                                    
                                 </table>
-                                
-
                             </div>
-
                         </div>
-                        
-
                     </div>
-                    
 
-                    
+
                     <div className="col-md-6 mb-4">
-
-                        
                         <div className="card">
-
-                            
                             <div className="card-body">
-
-                                
                                 <table className="table table-hover">
                                     
                                     <thead className="blue lighten-4">
@@ -282,34 +261,16 @@ export default class Home extends React.Component {
                                     </tbody>
                                     
                                 </table>
-                                
-
                             </div>
-
                         </div>
-                        
-
                     </div>
-                    
-
                 </div>
-                
 
-                
                 <div className="row wow fadeIn">
-
-                    
                     <div className="col-lg-6 col-md-6 mb-4">
-
-                        
                         <div className="card">
-
-                            
                             <div className="card-header">Line chart</div>
-
-                            
                             <div className="card-body">
-
                                 <canvas id="lineChart"></canvas>
 
                             </div>
@@ -1216,4 +1177,12 @@ export default class Home extends React.Component {
         </div>);
     }
 
-}
+}function mapStateToProps(state){
+    return {...state};
+};
+
+function matchDispatchToProps(dispatch){
+    return {dispatch};
+};
+
+export default connect(mapStateToProps, matchDispatchToProps)(HomeScreen);

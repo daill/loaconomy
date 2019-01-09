@@ -2,6 +2,7 @@ package http
 
 import (
 	"context"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
@@ -35,6 +36,7 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
+
 	log.Infof("server is running: %s", address)
 
 	log.Fatalf("%s", srv.ListenAndServe())
@@ -47,7 +49,16 @@ func FetchItems(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Re
 			ctx = context.Background()
 		}
 
-		allUseCases.ItemUseCase.Fetch(ctx)
+		result, err := allUseCases.ItemUseCase.Fetch(ctx)
+
+		if err != nil {
+			log.Error(err.Error())
+			fmt.Fprintf(resp, "%s", err)
+		}
+
+		log.Debugf("fetch item result: %s", result)
+
+		fmt.Fprintf(resp, "%s", result)
 	}
 }
 

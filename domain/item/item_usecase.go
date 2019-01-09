@@ -2,7 +2,6 @@ package item
 
 import (
 	"context"
-	"gitlab.daill.de/loaconomy/services/log"
 	"time"
 )
 
@@ -18,11 +17,11 @@ func NewItemUseCase(i Repository, timeout time.Duration) UseCase {
 	}
 }
 
-func (i *itemUseCase) Fetch(ctx context.Context) ([]*Item, error) {
-	ctx, cancel := context.WithTimeout(ctx, i.contextTimeout)
+func (iUC *itemUseCase) Fetch(ctx context.Context) (string, error) {
+	ctx, cancel := context.WithTimeout(ctx, iUC.contextTimeout)
 	defer cancel()
 
-	log.Info("called fetch")
+	result, err := iUC.itemRepository.GetAllItems()
 
-	return nil, nil
+	return string(result), err
 }

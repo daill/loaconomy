@@ -3,10 +3,9 @@ package item
 import "context"
 
 type Repository interface {
-	GetItem()
-	SaveItem(item *Item)
+	GetAllItems() ([]byte, error)
 }
 
 type UseCase interface {
-	Fetch(ctx context.Context) ([]*Item, error)
+	Fetch(ctx context.Context) (string, error)
 }

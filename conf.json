@@ -9,6 +9,7 @@
   "database": {
     "url": "http://127.0.0.1:9200",
     "pass": "password",
-    "name": "article"
+    "name": "article",
+    "baseindex": "loaconomy"
   }
 }

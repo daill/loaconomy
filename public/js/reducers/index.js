@@ -1,5 +1,7 @@
-import count from "./count";
+import itemsReducer from "./itemsReducer";
 
-export default {
-    count: count,
+const allReducers = {
+    items: itemsReducer,
 }
+
+export default allReducers;

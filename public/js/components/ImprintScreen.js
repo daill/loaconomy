@@ -1,7 +1,7 @@
 import React,  { Component } from "react";
 import { Link } from 'react-router-dom'
 
-export default class Imprint extends Component {
+export default class ImprintScreen extends Component {
 
     constructor(props) {
         super(props);
