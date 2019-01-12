@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import $ from "jquery";
-import {getAllItems} from '../actions/itemsAction';
+import {getAllItems, getItemsByTerm} from '../actions/itemsAction';
 import '../../ext/js/bootstrap';
 
 
@@ -10,23 +10,34 @@ class HomeScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.dispatch(getAllItems());
+        this.suggestions = [];
+
+    }
+
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        if(nextProps.items.data) {
+            this.suggestions = [];
+            for(let i = 0; i < nextProps.items.data.length; i++) {
+                this.suggestions.push(<li>{nextProps.items.data[i].name}</li>);
+            }
+        }
+
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
 
     }
 
     componentDidMount() {
+
+    }
+
+
+    onInput(text) {
+        this.props.dispatch(getItemsByTerm(text))
     }
 
     render() {
-        let items = [];
-        if (this.props.items && this.props.items.data) {
-            for (let i = 0; i < this.props.items.data.length; i++) {
-                items.push(<div>{this.props.items.data[i].name}</div>)
-            }
-        }
-
-        console.log(this.props)
-
         return (<div>
             <header>
                 <nav className="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
@@ -112,9 +123,10 @@ class HomeScreen extends React.Component {
                     <div className="col-md-9 mb-4">
                         <div className="card">
                             <div className="card-body">
-                                <form>
-                                    
-                                </form>
+                                <input type="text" onChange={(e) => {this.onInput(e.target.value)}} className="form-control" id="searchItem" placeholder="Search item"/>
+                                <ul>
+                                    {this.suggestions}
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -1186,3 +1198,4 @@ function matchDispatchToProps(dispatch){
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(HomeScreen);
+

@@ -1,0 +1,1133 @@
+PUT /loaconomy
+{
+  "settings": {
+    "number_of_shards": 1,
+    "analysis": {
+      "filter": {
+        "autocomplete_filter": {
+          "type":     "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 20
+        }
+      },
+      "analyzer": {
+        "autocomplete": {
+          "type":      "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "autocomplete_filter"
+          ]
+        }
+      }
+    }
+  }
+}
+
+PUT /loaconomy/_mapping/item
+{
+  "item": {
+    "properties": {
+      "name": {
+        "type":     "text",
+        "analyzer": "autocomplete"
+      }
+    }
+  }
+}
+
+DELETE /loaconomy
+
+POST /loaconomy/item/_bulk
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hardened Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Small Barrel Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Large Barrel Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Legendary Barrel Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Small Tero Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Large Tero Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Legendary Tero Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Small Four Eyed Salar"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Golden Aether Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Small Razor Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Small Spotted Tero Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Large Spotted Tero Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Huge Spotted Tero Fish"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Tattered SOS"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Soaked Map"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Weathered Map"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Rum-stained Map"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Shell-encrusted Map"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Hammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Hammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Hammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Hammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Hammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Maul"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Maul"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Maul"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Maul"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Maul"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron War Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper War Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold War Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt War Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian War Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Quarterstaff"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Quarterstaff"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Quarterstaff"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Quarterstaff"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Quarterstaff"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Warhammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Warhammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Warhammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Warhammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Warhammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Pitchfork"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Pitchfork"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Pitchfork"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Pitchfork"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Pitchfork"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Voulge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Voulge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Voulge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Voulge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Voulge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Spear"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Spear"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Spear"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Spear"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Spear"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Halberd"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Halberd"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Halberd"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Halberd"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Halberd"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Kryss"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Kryss"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Kryss"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Kryss"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Kryss"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Poniard"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Poniard"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Poniard"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Poniard"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Poniard"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Bone Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Bone Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Bone Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Bone Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Bone Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Longsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Longsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Longsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Longsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Longsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Broadsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Broadsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Broadsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Broadsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Broadsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Saber"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Saber"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Saber"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Saber"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Saber"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Katana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Katana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Katana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Katana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Katana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Great Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Great Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Great Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Great Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Great Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Large Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Large Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Large Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Large Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Large Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Chain Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Chain Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Chain Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Chain Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Chain Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Scale Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Scale Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Scale Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Scale Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Scale Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Full Plate Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Full Plate Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Full Plate Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Full Plate Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Full Plate Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Chain Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Chain Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Chain Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Chain Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Chain Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Scale Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Scale Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Scale Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Scale Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Scale Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Full Plate Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Full Plate Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Full Plate Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Full Plate Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Full Plate Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Chain Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Chain Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Chain Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Chain Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Chain Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Scale Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Scale Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Scale Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Scale Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Scale Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Full Plate Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Full Plate Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Full Plate Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Full Plate Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Full Plate Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Arrow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash Arrow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood Arrow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Short Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash Short Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood Short Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Long Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash Long Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood Long Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden War Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash War Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood War Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Small Shielc"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash Small Shielc"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood Small Shielc"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Buckler"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash Buckler"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood Buckler"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Kite Shield"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash Kite Shield"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood Kite Shield"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Ore"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Ore"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Ore"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Ore"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Ore"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Stone"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wood"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blightwood"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Stringy Meat"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Tough Meat"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Tender Meat"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ginseng"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blood"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Lemon Grass"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Bones"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Mushrooms"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Eye"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Blood"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cursed Bones"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Sickly Eye"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Blood"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ethereal Bones"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Decrepid Eye"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cactus"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Moss"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cotton"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Fluffy Cotton"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Spider Silk"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Hide"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Leather Hide"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Leather Hide"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Brick"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Board"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ash Board"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Brightwood Board"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Iron Ingot"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Copper Ingots"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gold Ingot"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cobalt Ingot"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Obsidian Ingot"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cooking Pot"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Engraving Tool"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hatchet"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Hunting Knife"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Lockpicks"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Shovel"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Waterskin"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather Saddlebags"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Pouch"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Alchemy Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Stove"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Anvil"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Inscription Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Forge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Carpentry Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Loom"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Stool"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Chair"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Fancy Chair"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Large Wooden Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Fancy Bench"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Round Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Inn Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Fancy Desk"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Campfire"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Shelf"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Stone Fireplace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Small Bed"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Medium Bed"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Large Bed"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wooden Bookshelf"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Torch"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Barrel"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Crate"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Lockbox"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Dresser"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Fishing Rod	"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Crook"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Small Fence	"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Gate"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Lesser Heal Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Lesser Mana Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Lesser Stamina Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Heal Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Mana Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Stamina Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Greater Heal Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Greater Mana Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Greater Stamina Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cure Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloth"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Quilted Cloth"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Silk Cloth"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Leather"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Beast Leather"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Vile Leather"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Bandana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Bandit Hood"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Mage Hat"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Shorts"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Apron"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Skirt"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Short Sleeve Shirt"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Long Sleeve Shirt"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Blacksmith Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Spellbook"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Refresh Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Heal Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Ruin Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Mana Missle Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cure Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Infuse Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Poison Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Teleport Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Fireball Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Lightning Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Greater Heal Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Wall of Fire Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Frost Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Rock Bombardment Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Mark Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Cloak Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Energy Bolt Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Meteor Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Resurrection Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Portal Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Earthquake Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Refresh Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Heal Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Ruin Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Mana Missle Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Cure Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Infuse Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Poison Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Teleport Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Fireball Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Lightning Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Greater Heal Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Wall of Fire Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Frost Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Rock Bombardment Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Mark Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Cloak Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Energy Bolt Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Meteor Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Resurrection Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Portal Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Earthquake Scroll"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Hammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Maul"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe War Mace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Quarterstaff"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Warhammer"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Pitchfork"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Voulge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Spear"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Halberd"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Kryss"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Poniard"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Bone Dagger"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Longsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Broadsword"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Saber"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Katana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Great Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Large Axe"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Scale Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Full Plate Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Scale Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Full Plate Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Scale Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Full Plate Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Brick"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Wooden Board"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Ash Board"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Brightwood Board"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Iron"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Copper"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Gold"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Cobalt"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Obsidian"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Cooking Pot"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Engraving Tool"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Hatchet"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Hunting Knife"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Lockpicks"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Shovel"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Waterskin"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Leather Saddlebags"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Pouch"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Alchemy Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Stove"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Anvil"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Inscription Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Forge"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Carpentry Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Loom"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Wooden Stool"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Wooden Chair"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Wooden Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Fancy Chair"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Large Wooden Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Fancy Bench"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Round Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Inn Table"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Fancy Desk"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Campfire"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Shelf"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Stone Fireplace"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Small Bed"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Medium Bed"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Large Bed"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Wooden Bookshelf"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Torch"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Barrel"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Crate"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Lockbox"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Dresser"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Fishing Rod	"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Crook"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Small Fence	"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Gate"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Lesser Heal Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Lesser Mana Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Lesser Stamina Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Heal Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Mana Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Stamina Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Greater Heal Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Greater Mana Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Greater Stamina Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Cure Potion"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Cloth"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Quilted Cloth"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Silk Cloth"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Leather"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Beast Leather"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Vile Leather"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Bandana"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Bandit Hood"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Mage Hat"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Shorts"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Apron"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Skirt"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Short Sleeve Shirt"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Long Sleeve Shirt"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Blacksmith Tunic"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Padded Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Linen Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Leather Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Hardened Helm"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Padded Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Linen Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Leather Legs"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Hardened Leggings"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Padded Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Linen Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Mage Robes"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Leather Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Hardened Chest"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Arrow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Short Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Long Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe War Bow"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Small Shielc"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Buckler"}
+{"index":{"_index" : "loaconomy", "_type" : "item"}}
+{"name": "Recipe Kite Shield"}

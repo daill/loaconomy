@@ -1,4 +1,4 @@
-import {ITEMS_LOADING_FAILURE, ITEMS_LOADING_BEGIN, ITEMS_GET_ALL} from '../actions/itemsAction';
+import {ITEMS_LOADING_FAILURE, ITEMS_LOADING_BEGIN, ITEMS_GET_ALL, ITEMS_GET_BY_TERM} from '../actions/itemsAction';
 
 const initialState = {
     loading: false,
@@ -15,6 +15,13 @@ export default function itemsReducer(state=initialState, action) {
             };
 
         case ITEMS_GET_ALL:
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+            };
+
+        case ITEMS_GET_BY_TERM:
             return {
                 ...state,
                 loading: false,

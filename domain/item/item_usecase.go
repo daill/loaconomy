@@ -17,11 +17,20 @@ func NewItemUseCase(i Repository, timeout time.Duration) UseCase {
 	}
 }
 
-func (iUC *itemUseCase) Fetch(ctx context.Context) (string, error) {
+func (iUC *itemUseCase) FetchAll(ctx context.Context) (string, error) {
 	ctx, cancel := context.WithTimeout(ctx, iUC.contextTimeout)
 	defer cancel()
 
 	result, err := iUC.itemRepository.GetAllItems()
+
+	return string(result), err
+}
+
+func (iUC *itemUseCase) FetchByTerm(term string, ctx context.Context) (string, error) {
+	ctx, cancel := context.WithTimeout(ctx, iUC.contextTimeout)
+	defer cancel()
+
+	result, err := iUC.itemRepository.GetItemsByTerm(term)
 
 	return string(result), err
 }

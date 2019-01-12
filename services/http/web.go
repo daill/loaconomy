@@ -49,7 +49,19 @@ func FetchItems(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Re
 			ctx = context.Background()
 		}
 
-		result, err := allUseCases.ItemUseCase.Fetch(ctx)
+		v := r.URL.Query()
+
+		searchTerm := v.Get("s")
+
+
+		var result string
+		var err error
+
+		if len(searchTerm) == 0 {
+			result, err = allUseCases.ItemUseCase.FetchAll(ctx)
+		} else {
+			result, err = allUseCases.ItemUseCase.FetchByTerm(searchTerm, ctx)
+		}
 
 		if err != nil {
 			log.Error(err.Error())
