@@ -26,7 +26,7 @@ export function getItemsByTerm(term) {
     return dispatch => {
         dispatch(itemsLoadingBegin());
         let url = "http://localhost:8890/api/items?s="+term;
-        console.log("called");
+        console.log("called term");
         return fetch(encodeURI(url)
             , {
                 method: "GET",

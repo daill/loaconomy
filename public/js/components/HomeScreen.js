@@ -5,98 +5,46 @@ import $ from "jquery";
 import {getAllItems, getItemsByTerm} from '../actions/itemsAction';
 import '../../ext/js/bootstrap';
 
-
 class HomeScreen extends React.Component {
 
     constructor(props) {
         super(props);
         this.suggestions = [];
-
+        this.value = null;
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        if(nextProps.items.data) {
-            this.suggestions = [];
+        if(nextProps.items.data && this.value.length > 1 && nextProps.items.loading == false) {
             for(let i = 0; i < nextProps.items.data.length; i++) {
-                this.suggestions.push(<li>{nextProps.items.data[i].name}</li>);
+                let itemName = nextProps.items.data[i].name;
+                this.suggestions.push(<li key={itemName} onClick={() => {this.onClickItem(itemName)}} className="list-group-item list-group-item-action">
+                    {itemName}
+                </li>);
             }
+        }
+    }
+
+    onClickItem(item) {
+        this.suggestions = [];
+        this.value = item;
+        this.forceUpdate();
+    }
+
+    onInput(text) {
+        this.suggestions = [];
+        this.value = text;
+        if (text.toString().length > 1) {
+            this.props.dispatch(getItemsByTerm(text))
+        } else {
+            this.forceUpdate();
         }
 
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-    }
-
-    componentDidMount() {
-
-    }
-
-
-    onInput(text) {
-        this.props.dispatch(getItemsByTerm(text))
-    }
-
     render() {
+        console.log("rendered");
         return (<div>
-            <header>
-                <nav className="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-                    <div className="container-fluid">
-                        <a className="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-                            <strong className="blue-text">MDB</strong>
-                        </a>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav mr-auto">
-                                <li className="nav-item active">
-                                    <a className="nav-link waves-effect" href="#">Home
-                                        <span className="sr-only">(current)</span>
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About
-                                        MDB</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-                                       target="_blank">Free
-                                        download</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">Free
-                                        tutorials</a>
-                                </li>
-                            </ul>
-
-                            <ul className="navbar-nav nav-flex-icons">
-                                <li className="nav-item">
-                                    <a href="https://www.facebook.com/mdbootstrap" className="nav-link waves-effect" target="_blank">
-                                        <i className="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a href="https://twitter.com/MDBootstrap" className="nav-link waves-effect" target="_blank">
-                                        <i className="fab fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a href="https://github.com/mdbootstrap/bootstrap-material-design" className="nav-link border border-light rounded waves-effect"
-                                       target="_blank">
-                                        <i className="fab fa-github mr-2"></i>MDB GitHub
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </div>
-                </nav>
-            </header>
-        
-
+   
         
         <main className="pt-5 mx-lg-5">
             <div className="container-fluid mt-5">
@@ -123,8 +71,8 @@ class HomeScreen extends React.Component {
                     <div className="col-md-9 mb-4">
                         <div className="card">
                             <div className="card-body">
-                                <input type="text" onChange={(e) => {this.onInput(e.target.value)}} className="form-control" id="searchItem" placeholder="Search item"/>
-                                <ul>
+                                <input autoComplete="off" type="text" onChange={(e) => {this.onInput(e.target.value)}} className="form-control" id="searchItem" placeholder="Search item"/>
+                                <ul className="list-group" value={this.value} style={{zIndex: "3", position: "absolute"}}>
                                     {this.suggestions}
                                 </ul>
                             </div>
