@@ -24,6 +24,8 @@
     "babel-preset-react": "^6.24.1",
     "connected-react-router": "latest",
     "css-loader": "^1.0.0",
+    "file-loader": "^3.0.1",
+    "image-webpack-loader": "^4.6.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router": "latest",
@@ -44,6 +46,7 @@
     "react-redux": "latest",
     "react-router-dom": "latest",
     "reactstrap": "^7.0.2",
+    "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0",
     "warning": "^4.0.1"
   }

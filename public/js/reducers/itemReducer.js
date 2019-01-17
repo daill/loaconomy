@@ -1,4 +1,4 @@
-import {ITEMS_LOADING_FAILURE, ITEMS_LOADING_BEGIN, ITEMS_GET_ALL, ITEMS_GET_BY_TERM, ITEMS_INPUT_CHANGE} from '../actions/itemsActions';
+import {ITEM_LOADING_BEGIN, ITEM_LOADING_FAILURE, ITEM_ADD_PRICE} from '../actions/itemActions';
 
 const initialState = {
     loading: false,
@@ -7,36 +7,21 @@ const initialState = {
 
 export default function itemsReducer(state=initialState, action) {
     switch(action.type) {
-        case ITEMS_LOADING_BEGIN:
+        case ITEM_LOADING_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
             };
 
-        case ITEMS_GET_ALL:
+        case ITEM_ADD_PRICE:
             return {
                 ...state,
                 loading: false,
                 data: action.payload,
             };
 
-        case ITEMS_GET_BY_TERM:
-            return {
-                ...state,
-                loading: false,
-                data: action.payload,
-                selectedValue: action.selectedValue,
-            };
-
-        case ITEMS_INPUT_CHANGE:
-            return {
-                ...state,
-                selectedValue: action.payload,
-
-            };
-
-        case ITEMS_LOADING_FAILURE:
+        case ITEM_LOADING_FAILURE:
             return {
                 ...state,
                 loading: false,

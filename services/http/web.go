@@ -21,6 +21,7 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	baseRouter.StrictSlash(true)
 
 	baseRouter.HandleFunc("/", HomeView())
+	baseRouter.HandleFunc("/addprice", HomeView())
 	apiRouter := baseRouter.PathPrefix("/api").Subrouter()
 	apiRouter.HandleFunc("/items", FetchItems(allUseCases)).Methods("GET")
 	baseRouter.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
