@@ -27,10 +27,7 @@ const renderField = ({ input, label, type, className, placeholder, meta: { touch
     </div>);
 };
 
-const override = css`
-    display: inline;
-    margin: 0 auto;
-    `;
+const override = css`display: inline;margin: 0 auto;`;
 
 class AddPriceForm extends React.Component {
 
