@@ -7,10 +7,10 @@ import {getAllItems, getItemsByTerm, itemsInputChange} from '../actions/itemsAct
 import '../../ext/js/bootstrap';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
-import mapImageSrc from '../../img/Celador.jpg';
 import AddPriceForm from './AddPriceForm';
 
-class HomeScreen extends React.Component {
+
+class AddPriceScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -20,24 +20,20 @@ class HomeScreen extends React.Component {
     }
 
     addItem(values){
-        console.log(values);
-        console.log("called");
+        this.props.dispatch(addItemPrice(values));
     }
 
     render() {
         return (<div>
-
             <HeaderComponent/>
             <main className="pt-5 mx-lg-5">
-                <div className="container-fluid mt-5">
-                    <div className="card mb-4 wow fadeIn">
-                    </div>
 
+                <div className="container-fluid mt-5">
                     <div className="row wow fadeIn">
                         <div className="col-md-8 offset-md-2 mb-4">
                             <div className="card">
                                 <div className="card-body">
-                                    <AddPriceForm onSubmit={this.addItem}/>
+                                    <AddPriceForm onSubmit={this.addItem.bind(this)} loading={this.props.item && this.props.item.loading}/>
                                 </div>
                             </div>
                         </div>
@@ -58,5 +54,5 @@ function matchDispatchToProps(dispatch){
     return {dispatch};
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, matchDispatchToProps)(AddPriceScreen);
 

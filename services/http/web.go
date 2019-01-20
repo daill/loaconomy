@@ -2,12 +2,14 @@ package http
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
 	"gitlab.daill.de/loaconomy/domain"
 	"gitlab.daill.de/loaconomy/services/log"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -24,6 +26,7 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	baseRouter.HandleFunc("/addprice", HomeView())
 	apiRouter := baseRouter.PathPrefix("/api").Subrouter()
 	apiRouter.HandleFunc("/items", FetchItems(allUseCases)).Methods("GET")
+	apiRouter.HandleFunc("/price", AddPrice(allUseCases)).Methods("POST")
 	baseRouter.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 	//baseRouter.Use(LogRequestMiddleware, AuthMiddleware)
 	baseRouter.Use(LogRequestMiddleware)
@@ -41,6 +44,33 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	log.Infof("server is running: %s", address)
 
 	log.Fatalf("%s", srv.ListenAndServe())
+}
+
+func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
+	return func(resp http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		if ctx == nil {
+			ctx = context.Background()
+		}
+
+		type price struct{
+			Server string
+			Item string `json: item`
+			Amount int32 `json: amount`
+			Price int32 `json: price`
+			LocationX float32
+			LocationY float32
+		}
+
+		var p = &price{}
+		b, _ := ioutil.ReadAll(r.Body)
+
+		json.Unmarshal(b, p)
+
+		log.Debugf("%v %v %v ", p.Item, p.Amount, p.Price)
+
+		resp.WriteHeader(http.StatusCreated)
+	}
 }
 
 func FetchItems(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {

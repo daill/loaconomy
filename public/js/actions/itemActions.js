@@ -20,11 +20,11 @@ export const itemAddPrice = (resultJson) => ({
 export function addItemPrice(itemWithPrice) {
     return dispatch => {
         dispatch(itemLoadingBegin());
-        let url = "http://localhost:8890/api/items?s="+term;
-        console.log("called term");
+        let url = "http://localhost:8890/api/price";
         return fetch(encodeURI(url)
             , {
-                method: "GET",
+                method: "POST",
+                body: JSON.stringify(itemWithPrice)
             })
             .then(handleErrors)
             .then(res => res.json())
