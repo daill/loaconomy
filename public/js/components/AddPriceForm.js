@@ -61,7 +61,7 @@ class AddPriceForm extends React.Component {
                                 <option>Verdant Earth</option>
                             </Field>
                         </div>
-                                <Field component={AutoSuggestField} name="item" classes={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}/>
+                            <Field validate={required} component={AutoSuggestField} name="item" classes={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}/>
                             <Field validate={required} parse={parseNumber} placeholder="Amount" component={renderField} name="amount" className={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}  type="number" id="amount"></Field>
                             <Field validate={required} parse={parseNumber} placeholder="Price in copper" component={renderField} name="price" type="number" id="price" className={"form-control col-md-8 offset-md-2 col-form-label"+ dynamic }></Field>
                         <div className="form-row mt-3">

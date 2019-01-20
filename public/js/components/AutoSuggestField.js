@@ -2,20 +2,18 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import AutoSuggest from 'react-autosuggest';
 
-const suggestions = [
-    { label: 'Apple', value: 1 },
-    { label: 'Aqua', value: 2 },
-    { label: 'Banana', value: 3 },
-    { label: 'Bean', value: 4 },
-    { label: 'Date', value: 5 },
-];
-
-const renderInputComponent = inputProps => (
-    <div className="form-row mt-1">
-        <input {...inputProps} className={inputProps.classes}/>
-        {inputProps.touched && ((inputProps.error && <div className="d-block invalid-feedback offset-md-2">{inputProps.error}</div> || (inputProps.warning && <div className="d-block invalid-feedback offset-md-2">{inputProps.warning}</div>)))}
-    </div>
-);
+const renderInputComponent = inputProps => {
+    let parsedClassName = inputProps.classes;
+    if (inputProps.meta.touched && inputProps.meta.error) {
+        parsedClassName += " is-invalid";
+    }
+    return (<div className="form-row mt-1">
+        <input {...inputProps} className={parsedClassName}/>
+        {inputProps.meta.touched && ((inputProps.meta.error && <div
+            className="d-block invalid-feedback offset-md-2">{inputProps.meta.error}</div> || (inputProps.meta.warning &&
+            <div className="d-block invalid-feedback offset-md-2">{inputProps.meta.warning}</div>)))}
+    </div>);
+};
 
 const renderSuggestionsContainer = ({ containerProps , children, query }) => {
     return (<div {...containerProps} className={containerProps.className + " form-control col-md-8 offset-md-2 col-form-label"}>
@@ -80,7 +78,7 @@ export default class AutoSuggestField extends React.PureComponent {
     }
 
     render () {
-        const { input, classes } = this.props;
+        const { input, classes, meta } = this.props;
         const { container } = this.props;
         input.placeholder = "Enter item name"
         return (
@@ -94,8 +92,7 @@ export default class AutoSuggestField extends React.PureComponent {
                 onSuggestionSelected={this.handleSuggestionSelected.bind(this)}
                 renderInputComponent={renderInputComponent}
                 renderSuggestionsContainer={renderSuggestionsContainer}
-                inputProps={{...input, classes}}
-                containerProps={classes}
+                inputProps={{...input, classes, meta}}
             />
         );
     }
