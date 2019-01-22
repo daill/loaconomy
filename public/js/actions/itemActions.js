@@ -1,6 +1,7 @@
 export const ITEM_LOADING_BEGIN   = 'ITEM_LOADING_BEGIN';
 export const ITEM_LOADING_FAILURE = 'ITEM_LOADING_FAILURE';
 export const ITEM_ADD_PRICE = 'ITEM_ADD_PRICE';
+export const ITEM_CLEAR_STATE = 'ITEM_CLEAR_STATE';
 
 export const itemLoadingBegin = () => ({
     type: ITEM_LOADING_BEGIN,
@@ -14,6 +15,10 @@ export const itemLoadingFailure = (error) => ({
 export const itemAddPrice = (resultJson) => ({
     type: ITEM_ADD_PRICE,
     payload: resultJson,
+});
+
+export const itemClearState = () => ({
+    type: ITEM_CLEAR_STATE,
 });
 
 
@@ -33,10 +38,15 @@ export function addItemPrice(itemWithPrice) {
     };
 }
 
+export function cleareItemState() {
+    return dispatch => dispatch(itemClearState());
+}
+
 
 // Handle HTTP errors since fetch won't.
 function handleErrors(response) {
     if (!response.ok) {
+        console.log("called error")
         if (response.status >= 400){
             throw Error("error");
         }

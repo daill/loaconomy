@@ -8,6 +8,7 @@ import { PulseLoader } from 'react-spinners';
 import { Field, change, reduxForm } from 'redux-form'
 import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
+import {addItemPrice, cleareItemState} from '../actions/itemActions';
 
 const required = value => value ? undefined : 'Required';
 const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined;
@@ -28,29 +29,45 @@ const renderField = ({ input, label, type, className, placeholder, meta: { touch
     </div>);
 };
 
-
-
 const override = css`display: inline;margin: 0 auto;`;
-
-
 
 
 class AddPriceForm extends React.Component {
 
     constructor(props) {
         super(props);
+    }
 
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        if(this.props.item && this.props.item.status === "ok" && this.props.pristine === true && nextProps.pristine === false) {
+            this.props.dispatch(cleareItemState());
+        }
     }
 
     render() {
         let dynamic = "";
 
-        if (this.props.loading) {
+        if (this.props.item && this.props.item.loading === true) {
             dynamic = " disabled";
+        }
+
+        let alert = null
+
+        if (this.props.item) {
+            if (this.props.item.status === "ok" && this.props.pristine === true) {
+                alert = (<div className=" alert alert-success" role="alert">Pricing data successfully added</div>);
+            } else if (this.props.item.status === "false" || this.props.item.error === true){
+                alert = (<div className="alert alert-danger" role="alert">Could not add pricing data</div>);
+            }
         }
 
         return (
             <form onSubmit={this.props.handleSubmit(v => this.props.onSubmit(v))}>
+                <div className="row">
+                    <div className="col-md-6 offset-md-3">
+                        {alert}
+                    </div>
+                </div>
                 <div className="row">
                     <div className="form-group col-md-6 offset-md-3">
                         <div className="form-row p-2 rounded primary-color" >
@@ -76,7 +93,7 @@ class AddPriceForm extends React.Component {
                         <div className="form-row mt-5">
                             <div className="col-md-8 offset-md-2">
                                 <button type="submit" className={"btn info-color btn-block m-0"+dynamic}>
-                                <PulseLoader sizeUnit={"px"} size={15} color={'#000000'} loading={this.props.loading}/>
+                                <PulseLoader sizeUnit={"px"} size={15} color={'#000000'} loading={this.props.item && this.props.item.loading === true}/>
                                     Add price
                                 </button>
                             </div>
@@ -87,7 +104,7 @@ class AddPriceForm extends React.Component {
     }
 }
 
-export default reduxForm({form: 'addPrice',}) (AddPriceForm);
+export default reduxForm({form: 'addPriceForm',}) (AddPriceForm);
 
 
 

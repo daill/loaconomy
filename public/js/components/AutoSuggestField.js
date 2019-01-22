@@ -2,32 +2,34 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import AutoSuggest from 'react-autosuggest';
 
-const renderInputComponent = inputProps => {
-    let parsedClassName = inputProps.classes;
-    if (inputProps.meta.touched && inputProps.meta.error) {
-        parsedClassName += " is-invalid";
-    }
-    return (<div className="form-row mt-1">
-        <input {...inputProps} className={parsedClassName}/>
-        {inputProps.meta.touched && ((inputProps.meta.error && <div
-            className="d-block invalid-feedback offset-md-2">{inputProps.meta.error}</div> || (inputProps.meta.warning &&
-            <div className="d-block invalid-feedback offset-md-2">{inputProps.meta.warning}</div>)))}
-    </div>);
-};
-
-const renderSuggestionsContainer = ({ containerProps , children, query }) => {
-    return (<div {...containerProps} className={containerProps.className + " form-control col-md-8 offset-md-2 col-form-label"}>
-        {children}
-    </div>)
-};
-
 export default class AutoSuggestField extends React.PureComponent {
     constructor (props) {
         super(props);
         this.state = {
             suggestions: [],
         };
+        this.parsedClassName = "";
     }
+
+    renderSuggestionsContainer({ containerProps , children, query }){
+        return (<div {...containerProps} className={containerProps.className + " " + this.parsedClassName}>
+            {children}
+        </div>)
+    };
+
+    renderInputComponent(inputProps) {
+        this.parsedClassName = inputProps.classes;
+        let localClassName = this.parsedClassName;
+        if (inputProps.meta.touched && inputProps.meta.error) {
+            localClassName += " is-invalid";
+        }
+        return (<div className="form-row mt-1">
+            <input {...inputProps} className={localClassName}/>
+            {inputProps.meta.touched && ((inputProps.meta.error && <div
+                className="d-block invalid-feedback offset-md-2">{inputProps.meta.error}</div> || (inputProps.meta.warning &&
+                <div className="d-block invalid-feedback offset-md-2">{inputProps.meta.warning}</div>)))}
+        </div>);
+    };
 
     handleFetch({ value }) {
         let url = "http://localhost:8890/api/items?s="+value;
@@ -67,8 +69,6 @@ export default class AutoSuggestField extends React.PureComponent {
         );
     }
 
-
-
     handleSuggestionSelected(event, { suggestionValue, method }){
         const { input } = this.props;
         input.onChange(suggestionValue);
@@ -90,8 +90,8 @@ export default class AutoSuggestField extends React.PureComponent {
                 renderSuggestion={this.renderSuggestion.bind(this)}
                 onSuggestionHighlighted={this.handleSuggestionHighlighted.bind(this)}
                 onSuggestionSelected={this.handleSuggestionSelected.bind(this)}
-                renderInputComponent={renderInputComponent}
-                renderSuggestionsContainer={renderSuggestionsContainer}
+                renderInputComponent={this.renderInputComponent.bind(this)}
+                renderSuggestionsContainer={this.renderSuggestionsContainer.bind(this)}
                 inputProps={{...input, classes, meta}}
             />
         );

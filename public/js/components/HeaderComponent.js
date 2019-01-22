@@ -11,6 +11,12 @@ class HeaderComponent extends React.Component {
     }
 
     render() {
+        let headerLink = (
+            <li className="nav-item active">
+                <Link className="nav-link waves-effect" to="/">Home</Link>
+            </li>)
+
+
         return (
             <header>
                 <nav className="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
@@ -27,11 +33,8 @@ class HeaderComponent extends React.Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
-                                <li className="nav-item active">
-                                    <Link className="nav-link waves-effect" to="/">Home</Link>
-                                </li>
+                                {(this.props.router.location.pathname != "/") && headerLink}
                             </ul>
-
                             <ul className="navbar-nav nav-flex-icons">
                                 <li className="nav-item">
                                     <a href="https://twitter.com/MDBootstrap" className="nav-link waves-effect"

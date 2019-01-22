@@ -1,4 +1,4 @@
-import {ITEM_LOADING_BEGIN, ITEM_LOADING_FAILURE, ITEM_ADD_PRICE} from '../actions/itemActions';
+import {ITEM_LOADING_BEGIN, ITEM_LOADING_FAILURE, ITEM_ADD_PRICE, ITEM_CLEAR_STATE} from '../actions/itemActions';
 
 const initialState = {
     loading: false,
@@ -14,11 +14,14 @@ export default function itemsReducer(state=initialState, action) {
                 error: null
             };
 
+        case ITEM_CLEAR_STATE:
+            return initialState;
+
         case ITEM_ADD_PRICE:
             return {
                 ...state,
                 loading: false,
-                data: action.payload,
+                ...action.payload
             };
 
         case ITEM_LOADING_FAILURE:

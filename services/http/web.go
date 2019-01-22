@@ -69,7 +69,8 @@ func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 
 		log.Debugf("%v %v %v ", p.Item, p.Amount, p.Price)
 
-		resp.WriteHeader(http.StatusCreated)
+		fmt.Fprint(resp, "{\"status\": \"ok\"}")
+
 	}
 }
 
