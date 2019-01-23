@@ -32,7 +32,7 @@ class AddPriceScreen extends React.Component {
             <main className="pt-5 mx-lg-5">
                 <div className="container-fluid mt-5">
                     <div className="row wow fadeIn">
-                        <div className="col-md-8 offset-md-2 mb-4">
+                        <div className="col-md-4 offset-md-4 mb-4">
                             <div className="card">
                                 <div className="card-body">
                                     <AddPriceForm item={this.props.item} onSubmit={this.addItem.bind(this)}/>

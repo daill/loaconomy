@@ -8,7 +8,7 @@ import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import PriceGraphComponent from './PriceGraphComponent';
 import PriceListComponent from './PriceListComponent';
-import GetPricingDataForm from './GetPricingDataForm';
+import GetItemPriceForm from './GetItemPriceForm';
 
 class HomeScreen extends React.Component {
 
@@ -35,7 +35,7 @@ class HomeScreen extends React.Component {
                                     <div className="col-md-9 mb-4">
                                         <div className="card">
                                             <div className="card-body">
-                                                <GetPricingDataForm onSubmit={this.findItemData.bind(this)} />
+                                                <GetItemPriceForm onSubmit={this.findItemData.bind(this)} />
                                             </div>
                                         </div>
                                     </div>

@@ -69,8 +69,8 @@ class AddPriceForm extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="form-group col-md-6 offset-md-3">
-                        <div className="form-row p-2 rounded primary-color" >
+                    <div className="form-group col-md-12">
+                        <div className="form-row p-2 mb-3 rounded primary-color" >
                             <label htmlFor="server" className="col-md-2 offset-md-3 col-form-label">Server</label>
                             <Field id="server" name="server" className={"form-control col-md-4"+dynamic} component="select">
                                 <option>Azur Sky</option>

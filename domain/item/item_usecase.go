@@ -34,3 +34,7 @@ func (iUC *itemUseCase) FetchByTerm(term string, ctx context.Context) (string, e
 
 	return string(result), err
 }
+
+func (iUC *itemUseCase) AddItemPriceData(ctx context.Context) error {
+
+}

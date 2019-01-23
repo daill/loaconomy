@@ -67,6 +67,8 @@ func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 
 		json.Unmarshal(b, p)
 
+		allUseCases.ItemUseCase.
+
 		log.Debugf("%v %v %v ", p.Item, p.Amount, p.Price)
 
 		fmt.Fprint(resp, "{\"status\": \"ok\"}")
