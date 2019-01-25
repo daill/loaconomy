@@ -88,7 +88,7 @@ class GetItemPriceForm extends React.Component {
                                 <Field component={AutoSuggestField} name="item" classes={"form-control col-form-label"+dynamic}/>
                             </div>
                             <div className="col-md-2 offset-md-1">
-                                <button type="submit" className={"btn info-color btn-block m-0"+dynamic}>
+                                <button type="submit" className={"btn btn-primary btn-block m-0"+dynamic}>
                                     Get price data
                                 </button>
                             </div>

@@ -8,7 +8,7 @@ import '../../ext/js/bootstrap';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import AddPriceForm from './AddPriceForm';
-import {reset} from 'redux-form';
+import {reset} from "redux-form";
 
 
 
@@ -29,7 +29,7 @@ class AddPriceScreen extends React.Component {
     render() {
         return (<div>
             <HeaderComponent/>
-            <main className="pt-5 mx-lg-5">
+            <main className="mx-lg-5">
                 <div className="container-fluid mt-5">
                     <div className="row wow fadeIn">
                         <div className="col-md-4 offset-md-4 mb-4">

@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
 	"gitlab.daill.de/loaconomy/domain"
+	"gitlab.daill.de/loaconomy/domain/item"
 	"gitlab.daill.de/loaconomy/services/log"
 	"io/ioutil"
 	"net/http"
@@ -53,25 +54,22 @@ func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 			ctx = context.Background()
 		}
 
-		type price struct{
-			Server string
-			Item string `json: item`
-			Amount int32 `json: amount`
-			Price int32 `json: price`
-			LocationX float32
-			LocationY float32
-		}
-
-		var p = &price{}
+		var p = &item.Item{}
 		b, _ := ioutil.ReadAll(r.Body)
 
 		json.Unmarshal(b, p)
 
-		allUseCases.ItemUseCase.
+		status := "ok"
+
+		err := allUseCases.ItemUseCase.AddItemPriceData(p, ctx)
+		if err  != nil {
+			status = "error"
+			log.Error(err.Error())
+		}
 
 		log.Debugf("%v %v %v ", p.Item, p.Amount, p.Price)
 
-		fmt.Fprint(resp, "{\"status\": \"ok\"}")
+		fmt.Fprintf(resp, "{\"status\": \"%s\"}", status)
 
 	}
 }

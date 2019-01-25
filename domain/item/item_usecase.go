@@ -35,6 +35,11 @@ func (iUC *itemUseCase) FetchByTerm(term string, ctx context.Context) (string, e
 	return string(result), err
 }
 
-func (iUC *itemUseCase) AddItemPriceData(ctx context.Context) error {
+func (iUC *itemUseCase) AddItemPriceData(item *Item, ctx context.Context) error {
+	ctx, cancel := context.WithTimeout(ctx, iUC.contextTimeout)
+	defer cancel()
 
+	err := iUC.itemRepository.AddItemPriceData(item)
+
+	return err
 }

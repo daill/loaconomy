@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import $ from "jquery";
 import '../../ext/js/bootstrap';
+import logo from '../../img/loac.png';
 
 class HeaderComponent extends React.Component {
 
@@ -18,19 +19,11 @@ class HeaderComponent extends React.Component {
 
 
         return (
-            <header>
-                <nav className="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-                    <div className="container-fluid">
-                        <a className="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/"
-                           target="_blank">
-                            <strong className="blue-text">MDB</strong>
-                        </a>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
+            <div>
+                <nav className="navbar navbar-expand navbar-dark bg-dark static-top">
+                        <Link className="navbar-brand mr-1" to="/">
+                            <img className="logo" src={logo}></img>
+                        </Link>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
                                 {(this.props.router.location.pathname != "/") && headerLink}
@@ -50,12 +43,9 @@ class HeaderComponent extends React.Component {
                                     </a>
                                 </li>
                             </ul>
-
                         </div>
-
-                    </div>
                 </nav>
-            </header>);
+            </div>);
     }
 }
 

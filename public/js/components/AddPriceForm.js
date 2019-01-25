@@ -5,7 +5,7 @@ import $ from "jquery";
 import '../../ext/js/bootstrap';
 import { css } from '@emotion/core';
 import { PulseLoader } from 'react-spinners';
-import { Field, change, reduxForm } from 'redux-form'
+import {Field, change, reduxForm, reset} from 'redux-form'
 import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
 import {addItemPrice, cleareItemState} from '../actions/itemActions';
@@ -39,8 +39,10 @@ class AddPriceForm extends React.Component {
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        if(this.props.item && this.props.item.status === "ok" && this.props.pristine === true && nextProps.pristine === false) {
-            this.props.dispatch(cleareItemState());
+        if(this.props.item && this.props.item.status === "ok") {
+            if (this.props.pristine === true && nextProps.pristine === false) {
+                this.props.dispatch(cleareItemState());
+            } 
         }
     }
 
@@ -56,7 +58,7 @@ class AddPriceForm extends React.Component {
         if (this.props.item) {
             if (this.props.item.status === "ok" && this.props.pristine === true) {
                 alert = (<div className=" alert alert-success" role="alert">Pricing data successfully added</div>);
-            } else if (this.props.item.status === "false" || this.props.item.error === true){
+            } else if (this.props.item.status === "error" || this.props.item.error === true){
                 alert = (<div className="alert alert-danger" role="alert">Could not add pricing data</div>);
             }
         }
@@ -64,7 +66,7 @@ class AddPriceForm extends React.Component {
         return (
             <form onSubmit={this.props.handleSubmit(v => this.props.onSubmit(v))}>
                 <div className="row">
-                    <div className="col-md-6 offset-md-3">
+                    <div className="col-md-12">
                         {alert}
                     </div>
                 </div>

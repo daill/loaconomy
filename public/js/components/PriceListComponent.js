@@ -12,8 +12,9 @@ class PriceListComponent extends React.Component {
 
     render() {
         return (
-            <div className="col-lg-6 col-md-6 mb-4">
-                <div className="card">
+
+            <div className="col-md-5 mb-4">
+                <div className="card shadow-nohover">
                     <div className="card-header">Horizontal Bar Chart</div>
                     <div className="card-body">
                         <canvas id="horizontalBar"></canvas>

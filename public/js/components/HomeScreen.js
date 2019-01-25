@@ -26,53 +26,64 @@ class HomeScreen extends React.Component {
     render() {
         return (<div>
                     <HeaderComponent/>
-                        <main className="pt-5 mx-lg-5">
-                            <div className="container-fluid mt-5">
-                                <div className="card mb-4 wow fadeIn">
-                                </div>
-
-                                <div className="row wow fadeIn">
-                                    <div className="col-md-9 mb-4">
-                                        <div className="card">
-                                            <div className="card-body">
-                                                <GetItemPriceForm onSubmit={this.findItemData.bind(this)} />
+                        <div id="wrapper">
+                            <div id="content-wrapper">
+                                <div className="container-fluid">
+                                    <div className="row wow fadeIn">
+                                        <div className="col-md-9">
+                                            <div className="row wow fadeIn">
+                                                <div className="col-md-12 mb-4">
+                                                    <div className="card shadow-nohover">
+                                                        <div className="card-body">
+                                                            <GetItemPriceForm onSubmit={this.findItemData.bind(this)} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row wow fadeIn">
+                                                <PriceListComponent/>
+                                                <PriceGraphComponent/>
+                                            </div>
+                                        </div>
+    
+                                        <div className="col-md-3 mb-4">
+                                            <div className="row wow fadeIn">
+                                                <div className="col-md-12">
+                                                    <div className="card shadow-nohover mb-4">
+                                                        <div className="card-body">
+                                                        <Link to="/addprice" className="btn btn-success w-100">
+                                                            Add new price
+                                                        </Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div className="row wow fadeIn">
+                                                <div className="col-md-12">
+                                                    <div className="card shadow-nohover mb-4">
+                                                        <div className="card-header text-center">
+                                                            Stats
+                                                        </div>
+                                                        <div className="card-body">
+                                                            <span>
+                                                            10650 in Database
+                                                            199091090 Prices seen
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div className="col-md-3 mb-4">
-                                        <div className="card mb-4">
-                                            <Link to="/addprice" className="btn info-color">
-                                                Add new price
-                                            </Link>
-
-                                        </div>
-
-                                        <div className="card mb-4">
-                                            <div className="card-header text-center">
-                                                Stats
-                                            </div>
-                                            <div className="card-body">
-                                                <span>
-                                                10650 in Database
-                                                199091090 Prices seen
-                                                </span>
-                                            </div>
-                                        </div>
+                                    <div className="row wow fadeIn">
+    
                                     </div>
                                 </div>
-
-                                <div className="row wow fadeIn">
-                                    <PriceListComponent/>
-                                    <PriceGraphComponent/>
-                                </div>
-
-
                             </div>
-                        </main>
-                    <FooterComponent/>
-                </div>);
+                        </div>
+            <FooterComponent/>
+        </div>);
     }
 
 }

@@ -33,7 +33,7 @@ func main() {
 	db := database.Init("loaconomy", "loaconomy", viper.GetString("database.url"))
 	log.Info("database initialized")
 
-	itemRepo := item.NewElasticItemRepository(db, viper.GetString("database.baseindex"))
+	itemRepo := item.NewElasticItemRepository(db, viper.GetString("database.item_index"), viper.GetString("database.price_index"))
 	itemUseCase := item.NewItemUseCase(itemRepo, timeoutContext)
 
 	allUseCases := &domain.UseCases{ItemUseCase: itemUseCase}

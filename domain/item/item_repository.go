@@ -9,19 +9,31 @@ import (
 
 type elasticItemRepository struct {
 	Client *database.LDB
-	BaseIndex string
+	ItemIndex string
+	PriceIndex string
 }
 
+func (e *elasticItemRepository) AddItemPriceData(item *Item) error {
+	_, err := e.Client.Conn.Index().
+		Index(e.PriceIndex).
+		Type("price").
+		BodyJson(item).
+		Do(context.Background())
+	if err != nil {
+		return err
+	}
 
+	return nil
+}
 
-func NewElasticItemRepository(Conn *database.LDB, baseIndex string) Repository{
-	return &elasticItemRepository{Client: Conn, BaseIndex: baseIndex}
+func NewElasticItemRepository(Conn *database.LDB, itemIndex, priceIndex string) Repository{
+	return &elasticItemRepository{Client: Conn, ItemIndex: itemIndex, PriceIndex: priceIndex}
 }
 
 
 func (e *elasticItemRepository) GetAllItems() ([]byte, error) {
 	searchResult, err := e.Client.Conn.Search().
-							Index(e.BaseIndex).
+							Index(e.ItemIndex).
 							Type("item").
 							Size(1000).
 							Query(elastic.NewMatchAllQuery()).
@@ -46,7 +58,7 @@ func (e *elasticItemRepository) GetAllItems() ([]byte, error) {
 
 func (e *elasticItemRepository) GetItemsByTerm(term string) ([]byte, error) {
 	searchResult, err := e.Client.Conn.Search().
-		Index(e.BaseIndex).
+		Index(e.ItemIndex).
 		Type("item").
 		Size(1000).
 		Query(elastic.NewMatchQuery("name", term)).

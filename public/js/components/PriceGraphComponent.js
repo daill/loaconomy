@@ -12,8 +12,8 @@ class PriceGraphComponent extends React.Component {
 
     render() {
         return (
-            <div className="col-md-6 mb-4">
-                <div className="card">
+            <div className="col-md-7 mb-4">
+                <div className="card shadow-nohover">
                     <div className="card-body">
                         <table className="table table-hover">
 
