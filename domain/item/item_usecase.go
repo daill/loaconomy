@@ -10,6 +10,15 @@ type itemUseCase struct {
 	contextTimeout time.Duration
 }
 
+func (iUC *itemUseCase) GetItemPrices(term string, ctx context.Context) (string, error) {
+	ctx, cancel := context.WithTimeout(ctx, iUC.contextTimeout)
+	defer cancel()
+
+	result, err := iUC.itemRepository.GetItemPrices(term)
+
+	return string(result), err
+}
+
 func NewItemUseCase(i Repository, timeout time.Duration) UseCase {
 	return &itemUseCase{
 		itemRepository: i,

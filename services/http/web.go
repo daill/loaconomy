@@ -28,6 +28,7 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	apiRouter := baseRouter.PathPrefix("/api").Subrouter()
 	apiRouter.HandleFunc("/items", FetchItems(allUseCases)).Methods("GET")
 	apiRouter.HandleFunc("/price", AddPrice(allUseCases)).Methods("POST")
+	apiRouter.HandleFunc("/prices", GetPricesByTerm(allUseCases)).Methods("GET")
 	baseRouter.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 	//baseRouter.Use(LogRequestMiddleware, AuthMiddleware)
 	baseRouter.Use(LogRequestMiddleware)
@@ -45,6 +46,31 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	log.Infof("server is running: %s", address)
 
 	log.Fatalf("%s", srv.ListenAndServe())
+}
+
+func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
+	return func(resp http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		if ctx == nil {
+			ctx = context.Background()
+		}
+
+		v := r.URL.Query()
+
+		searchTerm := v.Get("s")
+
+		result, err := allUseCases.ItemUseCase.GetItemPrices(searchTerm, ctx)
+
+		if err != nil {
+			log.Error(err.Error())
+			fmt.Fprintf(resp, "%s", err)
+		}
+
+		log.Debugf("fetch item result: %s", result)
+
+		fmt.Fprintf(resp, "%s", result)
+
+	}
 }
 
 func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {

@@ -13,8 +13,34 @@ type elasticItemRepository struct {
 	PriceIndex string
 }
 
+func (e *elasticItemRepository) GetItemPrices(term string) ([]byte, error) {
+	termQuery := elastic.NewTermQuery("item.raw", term)
+	searchResult, err := e.Client.Conn.Search().
+		Index(e.PriceIndex).
+		Type("price").
+		Query(termQuery).
+		Do(context.Background())
+	if err != nil {
+		return nil, err
+	}
+
+	hitArray := make([]json.RawMessage, searchResult.TotalHits())
+	for index, hit := range searchResult.Hits.Hits {
+		hitArray[index] = *hit.Source
+	}
+
+	var result []byte
+	result, err = json.Marshal(hitArray)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
 func (e *elasticItemRepository) AddItemPriceData(item *Item) error {
-	_, err := e.Client.Conn.Index().
+	var err error
+	_, err = e.Client.Conn.Index().
 		Index(e.PriceIndex).
 		Type("price").
 		BodyJson(item).

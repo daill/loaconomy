@@ -78,9 +78,9 @@ class GetItemPriceForm extends React.Component {
                                 <div className="form-row mt-1">
                                     <label htmlFor="server" className="col-md-2 col-form-label float-right"><b>Server</b></label>
                                     <Field id="server" name="server" className={"float-right form-control col-form-label col-md-8 "+dynamic} component="select">
-                                        <option>Azur Sky</option>
-                                        <option>Crimson Sea</option>
-                                        <option>Verdant Earth</option>
+                                        <option value="Azur Sky">Azur Sky</option>
+                                        <option value="Crimson Sea">Crimson Sea</option>
+                                        <option value="Verdant Earth">Verdant Earth</option>
                                     </Field>
                                 </div>
                             </div>
@@ -99,4 +99,9 @@ class GetItemPriceForm extends React.Component {
     }
 }
 
-export default reduxForm({form: 'getItemPriceForm',}) (GetItemPriceForm);
+export default reduxForm({
+    form: 'getItemPriceForm',
+    initialValues: {
+        'server': 'Azur Sky',
+    }
+}) (GetItemPriceForm);

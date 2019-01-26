@@ -42,7 +42,7 @@ class AddPriceForm extends React.Component {
         if(this.props.item && this.props.item.status === "ok") {
             if (this.props.pristine === true && nextProps.pristine === false) {
                 this.props.dispatch(cleareItemState());
-            } 
+            }
         }
     }
 
@@ -75,9 +75,9 @@ class AddPriceForm extends React.Component {
                         <div className="form-row p-2 mb-3 rounded primary-color" >
                             <label htmlFor="server" className="col-md-2 offset-md-3 col-form-label">Server</label>
                             <Field id="server" name="server" className={"form-control col-md-4"+dynamic} component="select">
-                                <option>Azur Sky</option>
-                                <option>Crimson Sea</option>
-                                <option>Verdant Earth</option>
+                                <option value="Azur Sky">Azur Sky</option>
+                                <option value="Crimson Sea">Crimson Sea</option>
+                                <option value="Verdant Earth">Verdant Earth</option>
                             </Field>
                         </div>
                             <Field validate={required} component={AutoSuggestField} name="item" classes={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}/>
@@ -106,7 +106,12 @@ class AddPriceForm extends React.Component {
     }
 }
 
-export default reduxForm({form: 'addPriceForm',}) (AddPriceForm);
+export default reduxForm({
+    form: 'addPriceForm',
+    initialValues: {
+        'server': 'Azur Sky',
+    }
+}) (AddPriceForm);
 
 
 
