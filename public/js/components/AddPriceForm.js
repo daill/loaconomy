@@ -9,10 +9,15 @@ import {Field, change, reduxForm, reset} from 'redux-form'
 import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
 import {addItemPrice, cleareItemState} from '../actions/itemActions';
+import { defaultValues } from '../utils/constants';
+
 
 const required = value => value ? undefined : 'Required';
-const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined;
+const minLength = min => value => value && value.length < min ? `Must be min ${min} characters or more` : undefined;
+const maxLength = max => value => value && value.length > max ? `Must be less then ${max} characters` : undefined;
+const notNegative = value => value > 0 ?  undefined : "Must be a positive number";
 const minLength3 = minLength(3);
+const maxLength24 = maxLength(24);
 
 const parseNumber = value => !value ? null : Number(value);
 
@@ -74,27 +79,27 @@ class AddPriceForm extends React.Component {
                     <div className="form-group col-md-12">
                         <div className="form-row p-2 mb-3 rounded primary-color" >
                             <label htmlFor="server" className="col-md-2 offset-md-3 col-form-label">Server</label>
-                            <Field id="server" name="server" className={"form-control col-md-4"+dynamic} component="select">
+                            <Field onChange={(e) => this.props.onChangeField("server", e.target.value)} id="server" name="server" className={"form-control col-md-4"+dynamic} component="select">
                                 <option value="Azur Sky">Azur Sky</option>
                                 <option value="Crimson Sea">Crimson Sea</option>
                                 <option value="Verdant Earth">Verdant Earth</option>
                             </Field>
                         </div>
-                            <Field validate={required} component={AutoSuggestField} name="item" classes={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}/>
-                            <Field validate={required} parse={parseNumber} placeholder="Amount" component={renderField} name="amount" className={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}  type="number" id="amount"></Field>
-                            <Field validate={required} parse={parseNumber} placeholder="Price in copper" component={renderField} name="price" type="number" id="price" className={"form-control col-md-8 offset-md-2 col-form-label"+ dynamic }></Field>
+                            <Field valueSelected={(e) => this.props.onChangeField("item", e)} validate={[required, maxLength24, minLength3]} component={AutoSuggestField} name="item" classes={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}/>
+                            <Field onChange={(e) => this.props.onChangeField("amount", e.target.value)} validate={[required, notNegative]} parse={parseNumber} placeholder="Amount" component={renderField} name="amount" className={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}  type="number" id="amount"></Field>
+                            <Field onChange={(e) => this.props.onChangeField("price", e.target.value)} validate={[required, notNegative]} parse={parseNumber} placeholder="Price in copper" component={renderField} name="price" type="number" id="price" className={"form-control col-md-8 offset-md-2 col-form-label"+ dynamic }></Field>
                         <div className="form-row mt-3">
                             <div id="location" className="col-md-8 offset-md-2">
                                 <label htmlFor="location-row" style={{color: "#808080"}}>Optional:</label>
                                 <div className="form-row" id="location-row">
-                                    <Field placeholder="Location x" parse={parseNumber} component="input" name="locationx" className={"form-control col-md-6 " + dynamic}  type="number" step="0.01" id="locationx" autoComplete="off"></Field>
-                                    <Field placeholder="Location y" parse={parseNumber} component="input" name="locationy" className={"form-control col-md-6 "+ dynamic } type="number" step="0.01" id="locationy" autoComplete="off"></Field>
+                                    <Field onChange={(e) => this.props.onChangeField("locationx", e.target.value)} placeholder="Location x" parse={parseNumber} component="input" name="locationx" className={"form-control col-md-6 " + dynamic}  type="number" step="0.01" id="locationx" autoComplete="off"></Field>
+                                    <Field onChange={(e) => this.props.onChangeField("locationy", e.target.value)} placeholder="Location y" parse={parseNumber} component="input" name="locationy" className={"form-control col-md-6 "+ dynamic } type="number" step="0.01" id="locationy" autoComplete="off"></Field>
                                 </div>
                             </div>
                         </div>
                         <div className="form-row mt-5">
                             <div className="col-md-8 offset-md-2">
-                                <button type="submit" className={"btn info-color btn-block m-0"+dynamic}>
+                                <button type="submit" className={"btn btn-primary btn-block m-0"+dynamic}>
                                 <PulseLoader sizeUnit={"px"} size={15} color={'#000000'} loading={this.props.item && this.props.item.loading === true}/>
                                     Add price
                                 </button>
@@ -108,9 +113,7 @@ class AddPriceForm extends React.Component {
 
 export default reduxForm({
     form: 'addPriceForm',
-    initialValues: {
-        'server': 'Azur Sky',
-    }
+    initialValues: {defaultValues}
 }) (AddPriceForm);
 
 

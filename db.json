@@ -2,9 +2,6 @@
 DELETE /items
 DELETE /prices
 
-DELETE /items
-DELETE /prices
-
 PUT /prices
 {
   "settings": {
@@ -35,7 +32,12 @@ PUT /prices
     "price": {
       "properties": {
         "item": {
-          "type": "text"
+          "type": "text",
+          "fields": {
+            "raw": {
+              "type":  "keyword"
+            }
+          }
         },
         "amount": {
           "type": "integer"
@@ -88,6 +90,11 @@ PUT /items
       "properties": {
         "name": {
           "type": "text",
+          "fields": {
+            "raw": {
+              "type":  "keyword"
+            }
+          },
           "analyzer": "autocomplete",
           "search_analyzer": "autocomplete_search"
         }
@@ -95,7 +102,6 @@ PUT /items
     }
   }
 }
-
 POST /items/item/_bulk
 {"index":{"_index" : "items", "_type" : "item"}}
 {"name": "Cloth Padded Helm"}

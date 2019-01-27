@@ -46,7 +46,6 @@ export function cleareItemState() {
 // Handle HTTP errors since fetch won't.
 function handleErrors(response) {
     if (!response.ok) {
-        console.log("called error")
         if (response.status >= 400){
             throw Error("error");
         }
