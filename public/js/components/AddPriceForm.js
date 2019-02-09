@@ -9,15 +9,20 @@ import {Field, change, reduxForm, reset} from 'redux-form'
 import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
 import {addItemPrice, cleareItemState} from '../actions/itemActions';
-import { defaultValues } from '../utils/constants';
+import defaults from '../utils/constants';
 
 
 const required = value => value ? undefined : 'Required';
 const minLength = min => value => value && value.length < min ? `Must be min ${min} characters or more` : undefined;
 const maxLength = max => value => value && value.length > max ? `Must be less then ${max} characters` : undefined;
 const notNegative = value => value > 0 ?  undefined : "Must be a positive number";
+const maxValue = max => value => value > max ? `Must be less then ${max}`: undefined;
+const minValue = min => value => value < min ? `Must be min ${min}`: undefined;
+
 const minLength3 = minLength(3);
 const maxLength24 = maxLength(24);
+const maxValue4000 = maxValue(4000);
+const minValue4000 = minValue(-4000);
 
 const parseNumber = value => !value ? null : Number(value);
 
@@ -51,6 +56,11 @@ class AddPriceForm extends React.Component {
         }
     }
 
+    captureSubnmit(v) {
+
+        this.props.onSubmit(v)
+    }
+
     render() {
         let dynamic = "";
 
@@ -69,14 +79,14 @@ class AddPriceForm extends React.Component {
         }
 
         return (
-            <form onSubmit={this.props.handleSubmit(v => this.props.onSubmit(v))}>
+            <form onSubmit={this.props.handleSubmit(v => this.captureSubnmit(v))}>
                 <div className="row">
                     <div className="col-md-12">
                         {alert}
                     </div>
                 </div>
                 <div className="row">
-                    <div className="form-group col-md-12">
+                    <div className="form-group col-md-8">
                         <div className="form-row p-2 mb-3 rounded primary-color" >
                             <label htmlFor="server" className="col-md-2 offset-md-3 col-form-label">Server</label>
                             <Field onChange={(e) => this.props.onChangeField("server", e.target.value)} id="server" name="server" className={"form-control col-md-4"+dynamic} component="select">
@@ -89,20 +99,22 @@ class AddPriceForm extends React.Component {
                             <Field onChange={(e) => this.props.onChangeField("amount", e.target.value)} validate={[required, notNegative]} parse={parseNumber} placeholder="Amount" component={renderField} name="amount" className={"form-control col-md-8 offset-md-2 col-form-label"+dynamic}  type="number" id="amount"></Field>
                             <Field onChange={(e) => this.props.onChangeField("price", e.target.value)} validate={[required, notNegative]} parse={parseNumber} placeholder="Price in copper" component={renderField} name="price" type="number" id="price" className={"form-control col-md-8 offset-md-2 col-form-label"+ dynamic }></Field>
                         <div className="form-row mt-3">
-                            <div id="location" className="col-md-8 offset-md-2">
-                                <label htmlFor="location-row" style={{color: "#808080"}}>Optional:</label>
-                                <div className="form-row" id="location-row">
-                                    <Field onChange={(e) => this.props.onChangeField("locationx", e.target.value)} placeholder="Location x" parse={parseNumber} component="input" name="locationx" className={"form-control col-md-6 " + dynamic}  type="number" step="0.01" id="locationx" autoComplete="off"></Field>
-                                    <Field onChange={(e) => this.props.onChangeField("locationy", e.target.value)} placeholder="Location y" parse={parseNumber} component="input" name="locationy" className={"form-control col-md-6 "+ dynamic } type="number" step="0.01" id="locationy" autoComplete="off"></Field>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-row mt-5">
                             <div className="col-md-8 offset-md-2">
                                 <button type="submit" className={"btn btn-primary btn-block m-0"+dynamic}>
-                                <PulseLoader sizeUnit={"px"} size={15} color={'#000000'} loading={this.props.item && this.props.item.loading === true}/>
+                                    <PulseLoader sizeUnit={"px"} size={15} color={'#000000'} loading={this.props.item && this.props.item.loading === true}/>
                                     Add price
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form-group col-md-4">
+                        <div className="form-row mt-5">
+                            <div id="location" className="col-md-12">
+                                <label htmlFor="location-row" style={{color: "#808080"}}>Optional:</label>
+                                <div className="form-row" id="location-row">
+                                    <Field validate={[maxValue4000, minValue4000]} onChange={(e) => this.props.onChangeField("location.x", e.target.value)} placeholder="Location x" parse={parseNumber} component={renderField} name="location.x" className={"form-control col-md-6 " + dynamic}  type="number" step="0.01" id="location.x" autoComplete="off"></Field>
+                                    <Field validate={[maxValue4000, minValue4000]} onChange={(e) => this.props.onChangeField("location.y", e.target.value)} placeholder="Location y" parse={parseNumber} component={renderField} name="location.y" className={"form-control col-md-6 "+ dynamic } type="number" step="0.01" id="location.y" autoComplete="off"></Field>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -113,7 +125,7 @@ class AddPriceForm extends React.Component {
 
 export default reduxForm({
     form: 'addPriceForm',
-    initialValues: {defaultValues}
+    initialValues: defaults.defaultFormValues
 }) (AddPriceForm);
 
 

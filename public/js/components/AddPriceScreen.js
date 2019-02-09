@@ -27,7 +27,7 @@ class AddPriceScreen extends React.Component {
     }
 
     addItem(values){
-        this.formValues = {server: "Azur Sky"};
+        values.price_per_unit = this.formValues.price/this.formValues.amount;
         this.props.dispatch(addItemPrice(values));
         this.props.dispatch(reset('addPriceForm'));
 
@@ -63,18 +63,19 @@ class AddPriceScreen extends React.Component {
     render() {
 
         const split = this.getDenominationParts(this.formValues.price)
-        let perUnit = {c: 0, s: 0, g: 0, p: 0};
 
-        if(this.formValues.amount && this.formValues.price && this.formValues.price > 0) {
-            perUnit = this.getDenominationParts(Math.trunc(this.formValues.price/this.formValues.amount))
+        if (this.formValues.amount && this.formValues.amount > 0 && this.formValues.price && this.formValues.price > 0) {
+            this.formValues.price_per_unit = this.formValues.price/this.formValues.amount;
+        } else {
+            this.formValues.price_per_unit = 0;
         }
-        
+
         return (<div>
             <HeaderComponent/>
             <main className="mx-lg-5">
                 <div className="container-fluid mt-5">
                     <div className="row wow fadeIn">
-                        <div className="col-md-4 offset-md-4 mb-4">
+                        <div className="col-md-5 offset-md-3 mb-4">
                             <div className="card shadow-nohover">
                                 <div className="card-body">
                                     <AddPriceForm item={this.props.item} onChangeField={this.onChangeField.bind(this)} onSubmit={this.addItem.bind(this)}/>
@@ -106,12 +107,12 @@ class AddPriceScreen extends React.Component {
                                             <td className="text-left w-50 pl-1 border-0 p-0">{this.formValues.price != undefined ?this.formValues.price:0} <img src={cImg}/></td>
                                         </tr>
                                         <tr>
-                                            <td scope="row" className="text-right w-30 border-0 p-0">Price splitted:</td>
-                                            <td className="text-left w-50 pl-1 border-0 p-0">{split.c} <img src={cImg}/> {split.s} <img src={sImg}/> {split.g} <img src={gImg}/> {split.p} <img src={pImg}/></td>
+                                            <td scope="row" className="text-right w-30 border-0 p-0">Price per unit:</td>
+                                            <td className="text-left w-50 pl-1 border-0 p-0">{this.formValues.price_per_unit != undefined ?this.formValues.price_per_unit:0} <img src={cImg}/></td>
                                         </tr>
                                         <tr>
-                                            <td scope="row" className="text-right w-30 border-0 p-0">Price per unit:</td>
-                                            <td className="text-left w-50 pl-1 border-0 p-0">{perUnit.c} <img src={cImg}/> {perUnit.s} <img src={sImg}/> {perUnit.g} <img src={gImg}/> {perUnit.p} <img src={pImg}/></td>
+                                            <td scope="row" className="text-right w-30 border-0 p-0">Price splitted:</td>
+                                            <td className="text-left w-50 pl-1 border-0 p-0">{split.c} <img src={cImg}/> {split.s} <img src={sImg}/> {split.g} <img src={gImg}/> {split.p} <img src={pImg}/></td>
                                         </tr>
                                         </tbody>
                                     </table>

@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import $ from "jquery";
 import {getAllItems, getItemsByTerm} from '../actions/itemsActions';
+import {getItemPrices} from '../actions/itemActions';
+
 import '../../ext/js/bootstrap';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import PriceGraphComponent from './PriceGraphComponent';
 import PriceListComponent from './PriceListComponent';
 import GetItemPriceForm from './GetItemPriceForm';
+import {getStats} from '../actions/statsActions';
+import * as d3 from "d3";
 
 class HomeScreen extends React.Component {
 
@@ -18,10 +22,13 @@ class HomeScreen extends React.Component {
         this.value = null;
     }
 
-    findItemData() {
-        console.log("§hall");
+    findItemData(values) {
+        this.props.dispatch(getItemPrices(values));
     }
 
+    componentWillMount() {
+        this.props.dispatch(getStats());
+    }
 
     render() {
         return (<div>
@@ -41,9 +48,19 @@ class HomeScreen extends React.Component {
                                                 </div>
                                             </div>
                                             <div className="row wow fadeIn">
-                                                <PriceListComponent/>
-                                                <PriceGraphComponent/>
+                                                <div className="col-md-12">
+                                                    <div className="card shadow-nohover mb-4">
+                                                        <div className="card-body">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            {this.props.item.prices && this.props.item.prices.length > 0 &&
+                                            <div className="row wow fadeIn">
+                                                <PriceListComponent/>
+                                                <PriceGraphComponent item={this.props.item}/>
+                                            </div>}
                                         </div>
     
                                         <div className="col-md-3 mb-4">

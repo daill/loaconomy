@@ -27,6 +27,8 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	baseRouter.HandleFunc("/addprice", HomeView())
 	apiRouter := baseRouter.PathPrefix("/api").Subrouter()
 	apiRouter.HandleFunc("/items", FetchItems(allUseCases)).Methods("GET")
+	apiRouter.HandleFunc("/item/stats", GetItemStats(allUseCases)).Methods("GET")
+	apiRouter.HandleFunc("/stats", GetStats(allUseCases)).Methods("GET")
 	apiRouter.HandleFunc("/price", AddPrice(allUseCases)).Methods("POST")
 	apiRouter.HandleFunc("/prices", GetPricesByTerm(allUseCases)).Methods("GET")
 	baseRouter.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
@@ -48,6 +50,45 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	log.Fatalf("%s", srv.ListenAndServe())
 }
 
+func GetStats(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
+	return func(resp http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		if ctx == nil {
+			ctx = context.Background()
+		}
+
+		result, err := allUseCases.StatsUseCase.GetStats(ctx)
+		if err != nil {
+			log.Error(err.Error())
+			fmt.Fprintf(resp, "%s", err)
+		}
+
+		log.Debugf("fetch item result: %s", result)
+
+		fmt.Fprintf(resp, "%s", result)
+
+	}
+}
+
+func GetItemStats(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
+	return func(resp http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		if ctx == nil {
+			ctx = context.Background()
+		}
+
+		result, err := allUseCases.StatsUseCase.GetStats(ctx)
+		if err != nil {
+			log.Error(err.Error())
+			fmt.Fprintf(resp, "%s", err)
+		}
+
+		log.Debugf("fetch item result: %s", result)
+
+		fmt.Fprintf(resp, "%s", result)
+	}
+}
+
 func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
 	return func(resp http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
@@ -57,9 +98,10 @@ func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *ht
 
 		v := r.URL.Query()
 
-		searchTerm := v.Get("s")
+		item := v.Get("i")
+		server := v.Get("s")
 
-		result, err := allUseCases.ItemUseCase.GetItemPrices(searchTerm, ctx)
+		result, err := allUseCases.ItemUseCase.GetItemPrices(item, server, ctx)
 
 		if err != nil {
 			log.Error(err.Error())
@@ -80,7 +122,7 @@ func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 			ctx = context.Background()
 		}
 
-		var p = &item.Item{}
+		var p = &item.Item{Seen: time.Now()}
 		b, _ := ioutil.ReadAll(r.Body)
 
 		json.Unmarshal(b, p)
@@ -93,7 +135,7 @@ func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 			log.Error(err.Error())
 		}
 
-		log.Debugf("%v %v %v ", p.Item, p.Amount, p.Price)
+		log.Debugf("%v", p)
 
 		fmt.Fprintf(resp, "{\"status\": \"%s\"}", status)
 

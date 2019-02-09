@@ -33,7 +33,9 @@ export default class AutoSuggestField extends React.PureComponent {
 
     handleFetch({ value }) {
         let url = "http://localhost:8890/api/items?s="+value;
-        this.props.valueSelected(value);
+        if (this.props.valueSelected) {
+            this.props.valueSelected(value);
+        }
         fetch(encodeURI(url), {method: "GET",})
             .then()
             .then(res => res.json())
@@ -72,7 +74,9 @@ export default class AutoSuggestField extends React.PureComponent {
     handleSuggestionSelected(event, { suggestionValue, method }){
         const { input } = this.props;
         input.onChange(suggestionValue);
-        this.props.valueSelected(suggestionValue);
+        if (this.props.valueSelected) {
+            this.props.valueSelected(suggestionValue);
+        }
         if (method === 'enter') {
             event.preventDefault();
         }

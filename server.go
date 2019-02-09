@@ -4,6 +4,7 @@ import (
 	"github.com/spf13/viper"
 	"gitlab.daill.de/loaconomy/domain"
 	"gitlab.daill.de/loaconomy/domain/item"
+	"gitlab.daill.de/loaconomy/domain/stats"
 	"gitlab.daill.de/loaconomy/services/database"
 	"gitlab.daill.de/loaconomy/services/http"
 	"gitlab.daill.de/loaconomy/services/log"
@@ -36,7 +37,10 @@ func main() {
 	itemRepo := item.NewElasticItemRepository(db, viper.GetString("database.item_index"), viper.GetString("database.price_index"))
 	itemUseCase := item.NewItemUseCase(itemRepo, timeoutContext)
 
-	allUseCases := &domain.UseCases{ItemUseCase: itemUseCase}
+	statsRepo := stats.NewElasticStatsRepository(db, viper.GetString("database.item_index"), viper.GetString("database.price_index"))
+	statsUseCase := stats.NewStatsUseCase(statsRepo, timeoutContext)
+
+	allUseCases := &domain.UseCases{ItemUseCase: itemUseCase, StatsUseCase: statsUseCase}
 
 	log.Info("starting loaconomy server ...")
 	http.RunServer(viper.GetString("server.address"), allUseCases)

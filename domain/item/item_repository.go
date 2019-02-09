@@ -13,13 +13,19 @@ type elasticItemRepository struct {
 	PriceIndex string
 }
 
-func (e *elasticItemRepository) GetItemPrices(term string) ([]byte, error) {
-	termQuery := elastic.NewTermQuery("item.raw", term)
+func (e *elasticItemRepository) GetItemPrices(term, server string) ([]byte, error) {
+	itemQuery := elastic.NewTermQuery("item.raw", term)
+	serverQuery := elastic.NewTermQuery("server.raw", server)
+	boolQuery := elastic.NewBoolQuery().Must(itemQuery).Must(serverQuery)
+
 	searchResult, err := e.Client.Conn.Search().
 		Index(e.PriceIndex).
 		Type("price").
-		Query(termQuery).
+		Query(boolQuery).
+		Sort("seen", true).
 		Do(context.Background())
+
+
 	if err != nil {
 		return nil, err
 	}
