@@ -23,4 +23,5 @@ type Item struct {
 	Location Location `json:"location"`
 	Seen time.Time `json:"seen"`
 	Bonus Bonus `json:"bonus"`
+	Kind int32 `json:"kind"`
 }

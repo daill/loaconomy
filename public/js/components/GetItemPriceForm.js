@@ -57,7 +57,6 @@ class GetItemPriceForm extends React.Component {
     constructor(props) {
         super(props);
     }
-    
 
     render() {
         let dynamic = "";
@@ -70,7 +69,7 @@ class GetItemPriceForm extends React.Component {
 
 
         return (
-            <form onSubmit={this.props.handleSubmit(v => this.props.onSubmit(v))}>
+            <form onSubmit={this.props.handleSubmit(v => {this.props.onSubmit(v)})}>
                 <div className="row">
                     <div className="form-group col-md-12">
                         <div className="form-row p-2 rounded primary-color" >
@@ -93,15 +92,22 @@ class GetItemPriceForm extends React.Component {
                                 </button>
                             </div>
                         </div>
+                        <div className="form-row p-2 rounded primary-color" >
+                            test
+                        </div>
                     </div>
                 </div>
             </form>);
     }
 }
 
-export default reduxForm({
+GetItemPriceForm = reduxForm({
     form: 'getItemPriceForm',
     initialValues: {
         'server': 'Azur Sky',
     }
 }) (GetItemPriceForm);
+
+export default connect(state => {
+    return state.item;
+})(GetItemPriceForm);

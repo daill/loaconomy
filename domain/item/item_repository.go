@@ -1,8 +1,10 @@
 package item
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/olivere/elastic"
 	"gitlab.daill.de/loaconomy/services/database"
 )
@@ -13,17 +15,20 @@ type elasticItemRepository struct {
 	PriceIndex string
 }
 
-func (e *elasticItemRepository) GetItemPrices(term, server string) ([]byte, error) {
+func (e *elasticItemRepository) GetItemPrices(term, server string, ctx context.Context) ([]byte, error) {
+	item, err := e.GetItemByTerm(term, ctx)
+
 	itemQuery := elastic.NewTermQuery("item.raw", term)
 	serverQuery := elastic.NewTermQuery("server.raw", server)
 	boolQuery := elastic.NewBoolQuery().Must(itemQuery).Must(serverQuery)
 
-	searchResult, err := e.Client.Conn.Search().
+	var searchResult *elastic.SearchResult
+	searchResult, err = e.Client.Conn.Search().
 		Index(e.PriceIndex).
 		Type("price").
 		Query(boolQuery).
 		Sort("seen", true).
-		Do(context.Background())
+		Do(ctx)
 
 
 	if err != nil {
@@ -35,22 +40,39 @@ func (e *elasticItemRepository) GetItemPrices(term, server string) ([]byte, erro
 		hitArray[index] = *hit.Source
 	}
 
+	var buf bytes.Buffer
+
 	var result []byte
 	result, err = json.Marshal(hitArray)
 	if err != nil {
 		return nil, err
 	}
 
-	return result, nil
+	buf.WriteString("{")
+	buf.Write(item)
+	buf.WriteString(",")
+	buf.Write(result)
+	buf.WriteString("}")
+
+	return buf.Bytes(), nil
 }
 
-func (e *elasticItemRepository) AddItemPriceData(item *Item) error {
-	var err error
+func (e *elasticItemRepository) AddItemPriceData(item *Item, ctx context.Context) error {
+	exists, err := e.TestItemExists(item.Item, ctx)
+
+	if err != nil {
+		return err
+	}
+
+	if !exists {
+		return errors.New("Item not in database")
+	}
+
 	_, err = e.Client.Conn.Index().
 		Index(e.PriceIndex).
 		Type("price").
 		BodyJson(item).
-		Do(context.Background())
+		Do(ctx)
 	if err != nil {
 		return err
 	}
@@ -63,13 +85,13 @@ func NewElasticItemRepository(Conn *database.LDB, itemIndex, priceIndex string) 
 }
 
 
-func (e *elasticItemRepository) GetAllItems() ([]byte, error) {
+func (e *elasticItemRepository) GetAllItems(ctx context.Context) ([]byte, error) {
 	searchResult, err := e.Client.Conn.Search().
 							Index(e.ItemIndex).
 							Type("item").
 							Size(1000).
 							Query(elastic.NewMatchAllQuery()).
-							Do(context.Background())
+							Do(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -88,20 +110,20 @@ func (e *elasticItemRepository) GetAllItems() ([]byte, error) {
 	return result, nil
 }
 
-func (e *elasticItemRepository) GetItemsByTerm(term string) ([]byte, error) {
+func (e *elasticItemRepository) GetItemsByTerm(term string, ctx context.Context) ([]byte, error) {
+	size := 10
 	searchResult, err := e.Client.Conn.Search().
 		Index(e.ItemIndex).
 		Type("item").
-		Size(1000).
-		Query(elastic.NewMatchQuery("name", term)).
-		Do(context.Background())
+		Query(elastic.NewMatchQuery("name", term)).Size(size).
+		Do(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	hitArray := make([]json.RawMessage, searchResult.TotalHits())
-	for index, hit := range searchResult.Hits.Hits {
-		hitArray[index] = *hit.Source
+	hitArray := make([]json.RawMessage, 0)
+	for _, hit := range searchResult.Hits.Hits {
+		hitArray = append(hitArray, *hit.Source)
 	}
 
 	var result []byte
@@ -111,6 +133,42 @@ func (e *elasticItemRepository) GetItemsByTerm(term string) ([]byte, error) {
 	}
 
 	return result, nil
+}
+
+func (e *elasticItemRepository) GetItemByTerm(term string, ctx context.Context) ([]byte, error) {
+	searchResult, err := e.Client.Conn.Search().
+		Index(e.ItemIndex).
+		Type("item").
+		Query(elastic.NewBoolQuery().Must(elastic.NewTermQuery("name.raw", term))).
+		Do(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []byte
+	if searchResult.TotalHits() == 1 {
+		result, err = searchResult.Hits.Hits[0].Source.MarshalJSON()
+		return result, err
+	}
+
+	return nil, nil
+}
+
+func (e *elasticItemRepository) TestItemExists(term string, ctx context.Context) (bool, error) {
+	searchResult, err := e.Client.Conn.Search().
+		Index(e.ItemIndex).
+		Type("item").
+		Query(elastic.NewBoolQuery().Must(elastic.NewTermQuery("name.raw", term))).
+		Do(ctx)
+	if err != nil {
+		return false, err
+	}
+
+	if searchResult.TotalHits() != 0 {
+		return true, nil
+	}
+
+	return false, nil
 }
 
 

@@ -1,6 +1,7 @@
 export default {
         defaultFormValues: {
-            server: "Azur Sky"
+            server: "Azur Sky",
+            kind: 0
         },
     }
 

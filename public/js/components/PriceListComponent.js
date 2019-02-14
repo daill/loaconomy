@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import $ from "jquery";
 import '../../ext/js/bootstrap';
+import {getDenominationParts} from '../utils/utils';
+import cImg from '../../img/c.png';
+import sImg from '../../img/s.png';
+import gImg from '../../img/g.png';
+import pImg from '../../img/p.png';
+
 
 const monthNames = [
     "January", "February", "March",
@@ -19,21 +25,27 @@ class PriceListComponent extends React.Component {
     }
 
     render() {
+
+
         this.tableRows = [];
         this.props.item.prices.map((entry, index) => {
             var seen = new Date(entry.seen);
             var day = seen.getDate();
             var monthIndex = seen.getMonth();
             var year = seen.getFullYear();
-
+            let split = getDenominationParts(entry.price);
+            let loc = "n/a";
+            if (entry.locationx && entry.locationy) {
+                loc = entry.locationx + "/" + entry.locationy;
+            }
 
             this.tableRows.push(<tr key={index}>
-                <th scope="row" >{day} {monthNames[monthIndex]} {year}</th>
-                <td>{entry.item}</td>
-                <td>{entry.price_per_unit}</td>
-                <td>{entry.price}</td>
+                <th>{entry.item}</th>
+                <td>{entry.price_per_unit != undefined ? entry.price_per_unit:0} <img src={cImg}/></td>
+                <td>{split.c} <img src={cImg}/> {split.s} <img src={sImg}/> {split.g} <img src={gImg}/> {split.p} <img src={pImg}/></td>
                 <td>{entry.amount}</td>
-                <td>{entry.locationx}/{entry.locationy}</td>
+                <td scope="row" >{day} {monthNames[monthIndex]} {year}</td>
+                <td>{loc}</td>
             </tr>)
         })
 
@@ -45,11 +57,11 @@ class PriceListComponent extends React.Component {
 
                             <thead className="blue lighten-4">
                             <tr>
-                                <th>Seen</th>
                                 <th>Item</th>
-                                <th>Price per unit</th>
+                                <th>PPU <br/><small>(price per unit)</small></th>
                                 <th>Price</th>
                                 <th>Amount</th>
+                                <th>Seen</th>
                                 <th>Location</th>
                             </tr>
                             </thead>

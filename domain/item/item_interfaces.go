@@ -3,10 +3,12 @@ package item
 import "context"
 
 type Repository interface {
-	GetAllItems() ([]byte, error)
-	GetItemsByTerm(term string) ([]byte, error)
-	AddItemPriceData(item *Item) error
-	GetItemPrices(term, server string) ([]byte, error)
+	GetAllItems(ctx context.Context) ([]byte, error)
+	GetItemsByTerm(term string, ctx context.Context) ([]byte, error)
+	AddItemPriceData(item *Item, ctx context.Context) error
+	GetItemPrices(term, server string, ctx context.Context) ([]byte, error)
+	TestItemExists(term string, ctx context.Context) (bool, error)
+	GetItemByTerm(term string, ctx context.Context) ([]byte, error)
 }
 
 type UseCase interface {
@@ -14,4 +16,5 @@ type UseCase interface {
 	FetchByTerm(term string, ctx context.Context) (string, error)
 	AddItemPriceData(item *Item, ctx context.Context) error
 	GetItemPrices(term, server string, ctx context.Context) (string, error)
+	TestItemExists(term string, ctx context.Context) (bool, error)
 }

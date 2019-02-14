@@ -23,42 +23,42 @@ export default class AutoSuggestField extends React.PureComponent {
         if (inputProps.meta.touched && inputProps.meta.error) {
             localClassName += " is-invalid";
         }
-        return (<div className="form-row mt-1">
-            <input {...inputProps} className={localClassName}/>
+        return (<div className="form-row mt-1 mb-1">
+            <div className="col-md-12 ">
+            <input {...inputProps} className={localClassName} />
             {inputProps.meta.touched && ((inputProps.meta.error && <div
-                className="d-block invalid-feedback offset-md-2">{inputProps.meta.error}</div> || (inputProps.meta.warning &&
-                <div className="d-block invalid-feedback offset-md-2">{inputProps.meta.warning}</div>)))}
+                className="d-block invalid-feedback ">{inputProps.meta.error}</div> || (inputProps.meta.warning &&
+                <div className="d-block invalid-feedback ">{inputProps.meta.warning}</div>)))}
+            </div>
         </div>);
     };
 
     handleFetch({ value }) {
-        let url = "http://localhost:8890/api/items?s="+value;
-        if (this.props.valueSelected) {
-            this.props.valueSelected(value);
+        if (value.length > 2) {
+            let url = "http://localhost:8890/api/items?s=" + value;
+            fetch(encodeURI(url), {method: "GET",})
+                .then()
+                .then(res => res.json())
+                .then(items => {
+                    if (this.props.valueSelected) {
+                        this.props.valueSelected(value);
+                    }
+                    this.handleItemsAfterFetch(items, value);
+                })
+                .catch(error => console.error(error));
         }
-        fetch(encodeURI(url), {method: "GET",})
-            .then()
-            .then(res => res.json())
-            .then(items => this.handleItemsAfterFetch(items))
-            .catch(error => console.error(error));
     }
 
-    handleItemsAfterFetch(items) {
-        let localSuggestions = [];
-        let itemName = null;
-        for(let i = 0; i < items.length; i++) {
-            let itemName = items[i].name;
-            localSuggestions.push(itemName);
-        }
-        this.setState({suggestions: localSuggestions})
+    handleItemsAfterFetch(items, value) {
+        this.setState({suggestions: items})
     }
 
     handleClear() {
-        this.setState({ suggestions: [] });
+        this.setState({ suggestions: []});
     }
 
     handleGetSuggestion(props){
-        return props;
+        return props.name;
     }
 
     handleSuggestionHighlighted({ suggestion }) {
@@ -67,15 +67,15 @@ export default class AutoSuggestField extends React.PureComponent {
 
     renderSuggestion(props) {
         return (
-            <span>{props}</span>
+            <span>{props!= null && props.name}</span>
         );
     }
 
-    handleSuggestionSelected(event, { suggestionValue, method }){
+    handleSuggestionSelected(event, { suggestionValue, method, suggestionIndex }){
         const { input } = this.props;
         input.onChange(suggestionValue);
         if (this.props.valueSelected) {
-            this.props.valueSelected(suggestionValue);
+            this.props.valueSelected(this.state.suggestions[suggestionIndex]);
         }
         if (method === 'enter') {
             event.preventDefault();
@@ -84,7 +84,6 @@ export default class AutoSuggestField extends React.PureComponent {
 
     render () {
         const { input, classes, meta } = this.props;
-        const { container } = this.props;
         input.placeholder = "Enter item name"
         return (
             <AutoSuggest

@@ -127,17 +127,17 @@ func AddPrice(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 
 		json.Unmarshal(b, p)
 
-		status := "ok"
+		status := fmt.Sprintf("{\"status\": \"ok\"}")
 
 		err := allUseCases.ItemUseCase.AddItemPriceData(p, ctx)
 		if err  != nil {
-			status = "error"
 			log.Error(err.Error())
+			status = fmt.Sprintf("{\"status\": \"error\", \"error_message\": \"%s\"}", err.Error())
 		}
 
 		log.Debugf("%v", p)
 
-		fmt.Fprintf(resp, "{\"status\": \"%s\"}", status)
+		fmt.Fprint(resp, status)
 
 	}
 }

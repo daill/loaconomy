@@ -13,7 +13,7 @@ class FooterComponent extends React.Component {
 
     render() {
         return (
-            <footer className="page-footer text-center font-small mt-4 wow fadeIn footer">
+            <footer className="page-footer text-center font-small mt-4 wow fadeIn">
                     <div className="pt-4">
                         <a className="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
                            role="button">

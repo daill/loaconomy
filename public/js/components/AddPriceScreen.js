@@ -9,6 +9,7 @@ import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import AddPriceForm from './AddPriceForm';
 import {reset} from "redux-form";
+import {getDenominationParts} from '../utils/utils';
 import cImg from '../../img/c.png';
 import sImg from '../../img/s.png';
 import gImg from '../../img/g.png';
@@ -20,6 +21,7 @@ class AddPriceScreen extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.suggestions = [];
         this.itemInput = React.createRef();
         this.suggestionList = React.createRef();
@@ -28,41 +30,18 @@ class AddPriceScreen extends React.Component {
 
     addItem(values){
         values.price_per_unit = this.formValues.price/this.formValues.amount;
+        values.kind = parseInt(values.kind);
         this.props.dispatch(addItemPrice(values));
         this.props.dispatch(reset('addPriceForm'));
-
     }
 
     onChangeField(field, value) {
         this.formValues[field] = value;
     }
 
-    getDenominationParts(value) {
-        let c = 0,s = 0,g = 0,p = 0
-        let platinValue = 1000000;
-        if (value && value > 0) {
-            let calc = value + '';
-            let lng = calc.length;
-            c = parseInt(calc.substr(lng-2, 2));
-            if (lng > 2) {
-                s = parseInt(calc.substr(lng-(4-(lng%2)), 2-(lng%2)));
-            }
-            if (lng > 4) {
-                g = parseInt(calc.substr(lng-(6-(lng%2)), 2-(lng%2)));
-            }
-            if (lng > 6) {
-                p = parseInt(calc.substr(0,lng-(6-(lng%2))));
-            }
-        }
-
-        return {c, s, g, p}
-    }
-
-
-
     render() {
 
-        const split = this.getDenominationParts(this.formValues.price)
+        const split = getDenominationParts(this.formValues.price)
 
         if (this.formValues.amount && this.formValues.amount > 0 && this.formValues.price && this.formValues.price > 0) {
             this.formValues.price_per_unit = this.formValues.price/this.formValues.amount;
@@ -96,7 +75,7 @@ class AddPriceScreen extends React.Component {
                                         </tr>
                                         <tr>
                                             <td scope="row" className="text-right w-30 border-0 p-0">Item:</td>
-                                            <td className="text-left w-50 pl-1 border-0 p-0">{this.formValues.item}</td>
+                                            <td className="text-left w-50 pl-1 border-0 p-0">{this.formValues.item != undefined && this.formValues.item.name}</td>
                                         </tr>
                                         <tr>
                                             <td scope="row" className="text-right w-30 border-0 p-0">Amount:</td>

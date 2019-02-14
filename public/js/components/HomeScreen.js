@@ -14,6 +14,8 @@ import GetItemPriceForm from './GetItemPriceForm';
 import {getStats} from '../actions/statsActions';
 import * as d3 from "d3";
 
+
+
 class HomeScreen extends React.Component {
 
     constructor(props) {
