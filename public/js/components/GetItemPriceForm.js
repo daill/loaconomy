@@ -5,10 +5,12 @@ import $ from "jquery";
 import '../../ext/js/bootstrap';
 import { css } from '@emotion/core';
 import { PulseLoader } from 'react-spinners';
-import { Field, change, reduxForm } from 'redux-form'
+import { Field, reset, reduxForm } from 'redux-form'
 import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
 import {addItemPrice, cleareItemState} from '../actions/itemActions';
+import {maxValue25, maxValue3, maxValue99, minValue0} from "../utils/utils";
+import defaults from "../utils/constants";
 
 const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined;
 const minLength3 = minLength(3);
@@ -58,15 +60,16 @@ class GetItemPriceForm extends React.Component {
         super(props);
     }
 
+    resetForm() {
+        this.props.dispatch(reset('getItemPriceForm'));
+    }
+
     render() {
         let dynamic = "";
 
         if (this.props.item && this.props.item.loading === true) {
             dynamic = " disabled";
         }
-
-        let alert = null
-
 
         return (
             <form onSubmit={this.props.handleSubmit(v => {this.props.onSubmit(v)})}>
@@ -75,26 +78,44 @@ class GetItemPriceForm extends React.Component {
                         <div className="form-row p-2 rounded primary-color" >
                             <div className="col-md-4">
                                 <div className="form-row mt-1">
-                                    <label htmlFor="server" className="col-md-2 col-form-label float-right"><b>Server</b></label>
-                                    <Field id="server" name="server" className={"float-right form-control col-form-label col-md-8 "+dynamic} component="select">
+                                    <div className="col-md-5 offset-md-7">
+                                    <Field id="server" name="server" className={"float-right form-control "+dynamic} component="select">
                                         <option value="Azur Sky">Azur Sky</option>
                                         <option value="Crimson Sea">Crimson Sea</option>
                                         <option value="Verdant Earth">Verdant Earth</option>
                                     </Field>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
-                                <Field component={AutoSuggestField} name="item" classes={"form-control col-form-label"+dynamic}/>
+                            <div className="col-md-3">
+                                <Field component={AutoSuggestField} name="item" classes={"form-control col-form-label "+dynamic}/>
+                                <div className="row">
+                                    <div id="bonus" className="col-md-12">
+                                        <div className="row m-0 p-0">
+                                            <div className="col-md-4 m-0 p-0">
+                                        <Field validate={[maxValue99, minValue0]} placeholder="Attack" parse={parseNumber} component={renderField} name="bonus.attack" className={"form-control " + dynamic}  type="number" step="1" id="bonus.attack" autoComplete="off"></Field>
+                                            </div>
+                                            <div className="col-md-4 m-0 p-0">
+                                        <Field validate={[maxValue25, minValue0]} placeholder="Accuracy" parse={parseNumber} component={renderField} name="bonus.accuracy" className={"form-control " + dynamic}  type="number" step="1" id="bonus.accuracy" autoComplete="off"></Field>
+                                            </div>
+                                                <div className="col-md-4 m-0 p-0">
+                                        <Field validate={[maxValue3, minValue0]} placeholder="Defense" parse={parseNumber} component={renderField} name="bonus.defense" className={"form-control " + dynamic}  type="number" step="1" id="bonus.defense" autoComplete="off"></Field>
+                                                </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <div className="col-md-2 offset-md-1">
-                                <button type="submit" className={"btn btn-primary btn-block m-0"+dynamic}>
+                            <div className="col-md-2">
+                                <button type="submit" className={"btn btn-primary btn-block mt-1 "+dynamic}>
                                     Get price data
+                                </button>
+                                <button onClick={this.resetForm.bind(this)} className={"btn btn-secondary btn-block mt-1 "+dynamic}>
+                                    Reset
                                 </button>
                             </div>
                         </div>
-                        <div className="form-row p-2 rounded primary-color" >
-                            test
-                        </div>
+
                     </div>
                 </div>
             </form>);
@@ -103,11 +124,9 @@ class GetItemPriceForm extends React.Component {
 
 GetItemPriceForm = reduxForm({
     form: 'getItemPriceForm',
-    initialValues: {
-        'server': 'Azur Sky',
-    }
+    initialValues: defaults.defaultFormValues
 }) (GetItemPriceForm);
 
 export default connect(state => {
-    return state.item;
+    return {"item": state.item}
 })(GetItemPriceForm);

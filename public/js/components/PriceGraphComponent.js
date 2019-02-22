@@ -80,10 +80,23 @@ class PriceGraphComponent extends React.Component {
 
     render() {
         return (<div className="col-md-5 mb-4">
-                    <div className="card shadow-nohover">
-                        <div className="card-header">Price trend</div>
-                        <div className="card-body" id="chart"> </div>
+                    <div className="row wow fadeIn">
+                        <div className="col-md-12">
+                            <div className="card shadow-nohover mb-4">
+                                <div className="card-body">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                     <div className="row wow fadeIn">
+                         <div className="col-md-12">
+                            <div className="card shadow-nohover">
+                                <div className="card-header">Price trend</div>
+                                <div className="card-body" id="chart"> </div>
+                            </div>
+                         </div>
+                     </div>
                 </div>);
     }
 }

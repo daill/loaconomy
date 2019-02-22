@@ -12,6 +12,7 @@ import (
 	"gitlab.daill.de/loaconomy/services/log"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -25,9 +26,9 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 
 	baseRouter.HandleFunc("/", HomeView())
 	baseRouter.HandleFunc("/addprice", HomeView())
+	baseRouter.HandleFunc("/imprint", HomeView())
 	apiRouter := baseRouter.PathPrefix("/api").Subrouter()
 	apiRouter.HandleFunc("/items", FetchItems(allUseCases)).Methods("GET")
-	apiRouter.HandleFunc("/item/stats", GetItemStats(allUseCases)).Methods("GET")
 	apiRouter.HandleFunc("/stats", GetStats(allUseCases)).Methods("GET")
 	apiRouter.HandleFunc("/price", AddPrice(allUseCases)).Methods("POST")
 	apiRouter.HandleFunc("/prices", GetPricesByTerm(allUseCases)).Methods("GET")
@@ -63,31 +64,13 @@ func GetStats(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 			fmt.Fprintf(resp, "%s", err)
 		}
 
-		log.Debugf("fetch item result: %s", result)
+		log.Debugf("fetched stats result: %s", result)
 
 		fmt.Fprintf(resp, "%s", result)
 
 	}
 }
 
-func GetItemStats(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
-	return func(resp http.ResponseWriter, r *http.Request) {
-		ctx := r.Context()
-		if ctx == nil {
-			ctx = context.Background()
-		}
-
-		result, err := allUseCases.StatsUseCase.GetStats(ctx)
-		if err != nil {
-			log.Error(err.Error())
-			fmt.Fprintf(resp, "%s", err)
-		}
-
-		log.Debugf("fetch item result: %s", result)
-
-		fmt.Fprintf(resp, "%s", result)
-	}
-}
 
 func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
 	return func(resp http.ResponseWriter, r *http.Request) {
@@ -101,7 +84,12 @@ func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *ht
 		item := v.Get("i")
 		server := v.Get("s")
 
-		result, err := allUseCases.ItemUseCase.GetItemPrices(item, server, ctx)
+		var err error
+		bonusAttack, err := strconv.Atoi(v.Get("at"))
+		bonusAccuracy, err := strconv.Atoi(v.Get("ac"))
+		bonusDefense, err := strconv.Atoi(v.Get("de"))
+
+		result, err := allUseCases.ItemUseCase.GetItemPrices(item, server, bonusAttack, bonusAccuracy, bonusDefense, ctx)
 
 		if err != nil {
 			log.Error(err.Error())

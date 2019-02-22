@@ -17,9 +17,9 @@ func (iUC *itemUseCase) TestItemExists(term string, ctx context.Context) (bool, 
 	return result, err
 }
 
-func (iUC *itemUseCase) GetItemPrices(term, server string, ctx context.Context) (string, error) {
+func (iUC *itemUseCase) GetItemPrices(term, server string, bonusAttack, bonusAccuracy, bonusDefense int, ctx context.Context) (string, error) {
 
-	result, err := iUC.itemRepository.GetItemPrices(term, server, ctx)
+	result, err := iUC.itemRepository.GetItemPrices(term, server, bonusAttack, bonusAccuracy, bonusDefense, ctx)
 
 	return string(result), err
 }

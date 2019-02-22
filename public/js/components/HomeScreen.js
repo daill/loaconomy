@@ -13,6 +13,7 @@ import PriceListComponent from './PriceListComponent';
 import GetItemPriceForm from './GetItemPriceForm';
 import {getStats} from '../actions/statsActions';
 import * as d3 from "d3";
+import StatsComponent from "./StatsComponent";
 
 
 
@@ -26,10 +27,6 @@ class HomeScreen extends React.Component {
 
     findItemData(values) {
         this.props.dispatch(getItemPrices(values));
-    }
-
-    componentWillMount() {
-        this.props.dispatch(getStats());
     }
 
     render() {
@@ -49,54 +46,27 @@ class HomeScreen extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="row wow fadeIn">
-                                                <div className="col-md-12">
-                                                    <div className="card shadow-nohover mb-4">
-                                                        <div className="card-body">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             {this.props.item.prices && this.props.item.prices.length > 0 &&
                                             <div className="row wow fadeIn">
                                                 <PriceListComponent/>
                                                 <PriceGraphComponent item={this.props.item}/>
                                             </div>}
                                         </div>
-    
                                         <div className="col-md-3 mb-4">
                                             <div className="row wow fadeIn">
                                                 <div className="col-md-12">
                                                     <div className="card shadow-nohover mb-4">
                                                         <div className="card-body">
                                                         <Link to="/addprice" className="btn btn-success w-100">
-                                                            Add new price
+                                                            Add price
                                                         </Link>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-    
-                                            <div className="row wow fadeIn">
-                                                <div className="col-md-12">
-                                                    <div className="card shadow-nohover mb-4">
-                                                        <div className="card-header text-center">
-                                                            Stats
-                                                        </div>
-                                                        <div className="card-body">
-                                                            <span>
-                                                            10650 in Database
-                                                            199091090 Prices seen
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                                           <StatsComponent/>
                                         </div>
-                                    </div>
-                                    <div className="row wow fadeIn">
-    
                                     </div>
                                 </div>
                             </div>

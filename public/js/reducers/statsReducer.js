@@ -1,4 +1,4 @@
-import {STATS_GET, STATS_LOADING_BEGIN, STATS_LOADING_FAILURE} from '../actions/statsActions';
+import {STATS_GET_STATS, STATS_LOADING_BEGIN, STATS_LOADING_FAILURE} from '../actions/statsActions';
 
 const initialState = {
     loading: false,
@@ -14,11 +14,11 @@ export default function statsReducer(state=initialState, action) {
                 error: null
             };
 
-        case STATS_GET:
+        case STATS_GET_STATS:
             return {
                 ...state,
                 loading: false,
-                prices: action.payload
+                ...action.payload
             };
 
 

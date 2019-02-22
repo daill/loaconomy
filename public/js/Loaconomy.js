@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import {ConnectedRouter, routerMiddleware, connectRouter} from "connected-react-router";
 import HomeScreen from "./components/HomeScreen";
 import AddPriceScreen from './components/AddPriceScreen';
+import ImprintScreen from './components/ImprintScreen';
 import allReducers from "./reducers/index";
 
 const history = createBrowserHistory();
@@ -30,6 +31,7 @@ export class Loaconomy extends React.Component{
                     <div>
                         <Route exact path="/" component={HomeScreen} />
                         <Route path="/addprice" component={AddPriceScreen} />
+                        <Route path="/imprint" component={ImprintScreen} />
                     </div>
                 </ConnectedRouter>
             </Provider>

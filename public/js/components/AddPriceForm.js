@@ -10,23 +10,8 @@ import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
 import {addItemPrice, cleareItemState} from '../actions/itemActions';
 import defaults from '../utils/constants';
+import {minLength3, maxValue99, minValue0, minValue4000, maxLength24, maxValue3, maxValue25, maxValue4000, required, notNegative} from "../utils/utils";
 
-
-const required = value => value ? undefined : 'Required';
-const minLength = min => value => value && value.length < min ? `Must be min ${min} characters or more` : undefined;
-const maxLength = max => value => value && value.length > max ? `Must be less then ${max} characters` : undefined;
-const notNegative = value => value > 0 ?  undefined : "Must be a positive number";
-const maxValue = max => value => value > max ? `Must be less then ${max}`: undefined;
-const minValue = min => value => value < min ? `Must be min ${min}`: undefined;
-
-const minLength3 = minLength(3);
-const maxLength24 = maxLength(24);
-const maxValue4000 = maxValue(4000);
-const maxValue3 = maxValue(3);
-const maxValue25 = maxValue(25);
-const maxValue99 = maxValue(99);
-const minValue0 = minValue(0);
-const minValue4000 = minValue(-4000);
 
 const parseNumber = value => !value ? null : Number(value);
 

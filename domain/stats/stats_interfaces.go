@@ -3,8 +3,8 @@ package stats
 import "context"
 
 type Repository interface {
-	GetItemsStats() ([]byte, error)
-	GetPricesStats() ([]byte, error)
+	GetItemsStats(ctx context.Context) ([]byte, error)
+	GetPricesStats(ctx context.Context) ([]byte, error)
 }
 
 type UseCase interface {

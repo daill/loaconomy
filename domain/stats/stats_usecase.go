@@ -17,12 +17,12 @@ func (sUc *statsUseCase) GetStats(ctx context.Context) (string, error) {
 	var result bytes.Buffer
 
 	result.WriteString("{\"item_stats\": {")
-	resultRaw, err := sUc.statsRepository.GetItemsStats()
+	resultRaw, err := sUc.statsRepository.GetItemsStats(ctx)
 	result.Write(resultRaw)
-	result.WriteString("}},{\"price_stats\": ")
-	resultRaw, err = sUc.statsRepository.GetPricesStats()
+	result.WriteString("},\"price_stats\": {")
+	resultRaw, err = sUc.statsRepository.GetPricesStats(ctx)
 	result.Write(resultRaw)
-	result.WriteString("}")
+	result.WriteString("}}")
 
 	return result.String(), err
 }

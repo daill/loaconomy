@@ -15,12 +15,26 @@ type elasticItemRepository struct {
 	PriceIndex string
 }
 
-func (e *elasticItemRepository) GetItemPrices(term, server string, ctx context.Context) ([]byte, error) {
+func (e *elasticItemRepository) GetItemPrices(term, server string, bonusAttack, bonusAccuracy, bonusDefense int, ctx context.Context) ([]byte, error) {
 	item, err := e.GetItemByTerm(term, ctx)
 
 	itemQuery := elastic.NewTermQuery("item.raw", term)
 	serverQuery := elastic.NewTermQuery("server.raw", server)
-	boolQuery := elastic.NewBoolQuery().Must(itemQuery).Must(serverQuery)
+	attackQuery := elastic.NewTermQuery("bonus.attack", bonusAttack)
+	accuracyQuery := elastic.NewTermQuery("bonus.accuracy", bonusAccuracy)
+	defenseQuery := elastic.NewTermQuery("bonus.defense", bonusDefense)
+
+	boolQuery := elastic.NewBoolQuery().Must(itemQuery,serverQuery)
+
+	if bonusAttack != 0 {
+		boolQuery.Must(attackQuery)
+	}
+	if bonusAccuracy != 0 {
+		boolQuery.Must(accuracyQuery)
+	}
+	if bonusDefense != 0 {
+		boolQuery.Must(defenseQuery)
+	}
 
 	var searchResult *elastic.SearchResult
 	searchResult, err = e.Client.Conn.Search().
@@ -48,9 +62,9 @@ func (e *elasticItemRepository) GetItemPrices(term, server string, ctx context.C
 		return nil, err
 	}
 
-	buf.WriteString("{")
+	buf.WriteString("{\"item\": ")
 	buf.Write(item)
-	buf.WriteString(",")
+	buf.WriteString(", \"prices\": ")
 	buf.Write(result)
 	buf.WriteString("}")
 

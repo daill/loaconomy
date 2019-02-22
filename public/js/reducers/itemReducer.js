@@ -21,7 +21,8 @@ export default function itemReducer(state=initialState, action) {
             return {
                 ...state,
                 loading: false,
-                prices: action.payload
+                ...action.payload.item,
+                prices: action.payload.prices
             };
 
         case ITEM_ADD_PRICE:

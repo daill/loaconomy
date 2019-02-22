@@ -91,7 +91,7 @@ class AddPriceScreen extends React.Component {
                                         </tr>
                                         <tr>
                                             <td scope="row" className="text-right w-30 border-0 p-0">Price splitted:</td>
-                                            <td className="text-left w-50 pl-1 border-0 p-0">{split.c} <img src={cImg}/> {split.s} <img src={sImg}/> {split.g} <img src={gImg}/> {split.p} <img src={pImg}/></td>
+                                            <td className="text-left w-50 pl-1 border-0 p-0">{split.p} <img src={pImg}/> {split.g} <img src={gImg}/> {split.s} <img src={sImg}/> {split.c} <img src={cImg}/></td>
                                         </tr>
                                         </tbody>
                                     </table>
