@@ -26,7 +26,7 @@ class HomeScreen extends React.Component {
     }
 
     findItemData(values) {
-        this.props.dispatch(getItemPrices(values));
+        this.props.dispatch(getItemPrices(values, 0, 1, 1));
     }
 
     render() {
@@ -36,7 +36,7 @@ class HomeScreen extends React.Component {
                             <div id="content-wrapper">
                                 <div className="container-fluid">
                                     <div className="row wow fadeIn">
-                                        <div className="col-md-9">
+                                        <div className="col-md-10">
                                             <div className="row wow fadeIn">
                                                 <div className="col-md-12 mb-4">
                                                     <div className="card shadow-nohover">
@@ -52,7 +52,7 @@ class HomeScreen extends React.Component {
                                                 <PriceGraphComponent item={this.props.item}/>
                                             </div>}
                                         </div>
-                                        <div className="col-md-3 mb-4">
+                                        <div className="col-md-2 mb-4">
                                             <div className="row wow fadeIn">
                                                 <div className="col-md-12">
                                                     <div className="card shadow-nohover mb-4">

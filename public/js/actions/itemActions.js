@@ -1,8 +1,13 @@
+import constants from '../utils/constants';
+
 export const ITEM_LOADING_BEGIN   = 'ITEM_LOADING_BEGIN';
 export const ITEM_LOADING_FAILURE = 'ITEM_LOADING_FAILURE';
 export const ITEM_ADD_PRICE = 'ITEM_ADD_PRICE';
 export const ITEM_CLEAR_STATE = 'ITEM_CLEAR_STATE';
 export const ITEM_GET_PRICES = 'ITEM_GET_PRICES';
+export const ITEM_SORT_PRICES = 'ITEM_SORT_PRICES';
+
+
 
 export const itemLoadingBegin = () => ({
     type: ITEM_LOADING_BEGIN,
@@ -13,9 +18,12 @@ export const itemLoadingFailure = (error) => ({
     payload: {error},
 });
 
-export const itemGetPrices = (resultJson) => ({
+export const itemGetPrices = (resultJson, searchValues, page, sizePerPage) => ({
     type: ITEM_GET_PRICES,
     payload: resultJson,
+    search: searchValues,
+    currentPage: page,
+    currentSizePerPage: sizePerPage,
 });
 
 
@@ -29,11 +37,23 @@ export const itemClearState = () => ({
     type: ITEM_CLEAR_STATE,
 });
 
+export const itemSortPrices = (prices) => ({
+    type: ITEM_SORT_PRICES,
+    payload: prices
+});
 
-export function getItemPrices(values) {
+export function sortItemPrices(prices, sortFunction) {
+    return dispatch => {
+        let sorted = prices.sort(sortFunction);
+        return dispatch(itemSortPrices(sorted));
+    }
+}
+
+export function getItemPrices(values, from, size, page) {
     return dispatch => {
         dispatch(itemLoadingBegin());
-        let url = "http://localhost:8890/api/prices?i="+values.item + "&s=" + values.server
+
+        let url = "http://localhost:8890/api/prices?i="+values.item + "&s=" + values.server + "&f=" + from + "&c=" + size;
         if (values.bonus) {
             url = url + "&at=" + values.bonus.attack + "&ac=" + values.bonus.accuracy + "&de=" + values.bonus.defense;
         }
@@ -44,7 +64,7 @@ export function getItemPrices(values) {
             })
             .then(handleErrors)
             .then(res => res.json())
-            .then(json => dispatch(itemGetPrices(json)))
+            .then(json => dispatch(itemGetPrices(json, values, page, size)))
             .catch(error => dispatch(itemLoadingFailure(error)));
     };
 }

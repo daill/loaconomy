@@ -97,7 +97,8 @@ body {
   border: none; }
 
 .price-list-table {
-  font-size: 12px !important; }
+  font-size: 12px !important;
+  border: 0; }
 
 .undecorated {
   list-style-type: none; }

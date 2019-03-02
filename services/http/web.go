@@ -88,8 +88,10 @@ func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *ht
 		bonusAttack, err := strconv.Atoi(v.Get("at"))
 		bonusAccuracy, err := strconv.Atoi(v.Get("ac"))
 		bonusDefense, err := strconv.Atoi(v.Get("de"))
+		from, err := strconv.Atoi(v.Get("f"))
+		size, err := strconv.Atoi(v.Get("c"))
 
-		result, err := allUseCases.ItemUseCase.GetItemPrices(item, server, bonusAttack, bonusAccuracy, bonusDefense, ctx)
+		result, err := allUseCases.ItemUseCase.GetItemPrices(item, server, from, size, bonusAttack, bonusAccuracy, bonusDefense, ctx)
 
 		if err != nil {
 			log.Error(err.Error())

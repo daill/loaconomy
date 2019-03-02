@@ -1,4 +1,11 @@
-import {ITEM_LOADING_BEGIN, ITEM_LOADING_FAILURE, ITEM_ADD_PRICE, ITEM_CLEAR_STATE, ITEM_GET_PRICES} from '../actions/itemActions';
+import {
+    ITEM_LOADING_BEGIN,
+    ITEM_LOADING_FAILURE,
+    ITEM_ADD_PRICE,
+    ITEM_CLEAR_STATE,
+    ITEM_GET_PRICES,
+    ITEM_SORT_PRICES
+} from '../actions/itemActions';
 
 const initialState = {
     loading: false,
@@ -22,6 +29,10 @@ export default function itemReducer(state=initialState, action) {
                 ...state,
                 loading: false,
                 ...action.payload.item,
+                totalPriceCount: action.payload.totalCount,
+                search: action.search,
+                currentPage: action.currentPage,
+                currentSizePerPage: action.currentSizePerPage,
                 prices: action.payload.prices
             };
 
@@ -38,6 +49,12 @@ export default function itemReducer(state=initialState, action) {
                 loading: false,
                 error: true,
                 payload: {...action.payload}
+            };
+
+        case ITEM_SORT_PRICES:
+            return {
+                ...state,
+                prices: action.payload
             };
 
         default:

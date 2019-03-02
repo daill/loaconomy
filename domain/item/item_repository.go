@@ -5,8 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/olivere/elastic"
 	"gitlab.daill.de/loaconomy/services/database"
+	"strconv"
 )
 
 type elasticItemRepository struct {
@@ -15,7 +17,7 @@ type elasticItemRepository struct {
 	PriceIndex string
 }
 
-func (e *elasticItemRepository) GetItemPrices(term, server string, bonusAttack, bonusAccuracy, bonusDefense int, ctx context.Context) ([]byte, error) {
+func (e *elasticItemRepository) GetItemPrices(term, server string, from, size, bonusAttack, bonusAccuracy, bonusDefense int, ctx context.Context) ([]byte, error) {
 	item, err := e.GetItemByTerm(term, ctx)
 
 	itemQuery := elastic.NewTermQuery("item.raw", term)
@@ -42,17 +44,23 @@ func (e *elasticItemRepository) GetItemPrices(term, server string, bonusAttack, 
 		Type("price").
 		Query(boolQuery).
 		Sort("seen", true).
+		From(from).Size(size).
 		Do(ctx)
-
 
 	if err != nil {
 		return nil, err
 	}
 
-	hitArray := make([]json.RawMessage, searchResult.TotalHits())
+	hitArray := make([]json.RawMessage, len(searchResult.Hits.Hits))
 	for index, hit := range searchResult.Hits.Hits {
-		hitArray[index] = *hit.Source
+		b := []byte(*hit.Source)
+		idString := fmt.Sprintf(",\"id\":\"%s\"}", hit.Id)
+		b = b[:len(b)-1]
+		b = append(b, []byte(idString)...)
+		hitArray[index] = json.RawMessage(b)
 	}
+
+
 
 	var buf bytes.Buffer
 
@@ -64,7 +72,9 @@ func (e *elasticItemRepository) GetItemPrices(term, server string, bonusAttack, 
 
 	buf.WriteString("{\"item\": ")
 	buf.Write(item)
-	buf.WriteString(", \"prices\": ")
+	buf.WriteString(",\"totalCount\": \"")
+	buf.WriteString(strconv.FormatInt(searchResult.TotalHits(), 10))
+	buf.WriteString("\", \"prices\": ")
 	buf.Write(result)
 	buf.WriteString("}")
 

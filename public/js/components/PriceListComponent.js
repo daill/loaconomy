@@ -8,74 +8,152 @@ import cImg from '../../img/c.png';
 import sImg from '../../img/s.png';
 import gImg from '../../img/g.png';
 import pImg from '../../img/p.png';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory, {PaginationProvider} from 'react-bootstrap-table2-paginator';
+import {getItemPrices, sortItemPrices} from "../actions/itemActions";
+
 
 
 const monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
+    "Jan", "Feb", "Mar",
+    "Apr", "May", "Jun", "Jul",
+    "Aug", "Sep", "Oct",
+    "Nov", "Dec"
 ];
+
 
 class PriceListComponent extends React.Component {
 
     constructor(props) {
         super(props);
         this.props.item.prices.reverse();
+
+        this.options = {
+            sizePerPage: parseInt(this.props.item.currentSizePerPage),
+            currSizePerPage: parseInt(this.props.item.currentSizePerPage),
+            totalSize: parseInt(this.props.item.totalPriceCount)
+        }
+
+        this.columns = [
+            {
+                dataField: 'item',
+                text: 'Item',
+            },{
+                dataField: 'price_per_unit',
+                text: 'PPU',
+                sort: true,
+                formatter: this.buildPPU
+            },{
+                dataField: 'price',
+                text: 'Price',
+                sort: true,
+                formatter: this.buildPrice
+            }
+        ]
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+    }
+
+    buildKey(cell, row, rowIndex, formatExtraData) {
+        return rowIndex;
+    }
+
+    buildLoc(cell, row) {
+        let loc = "n/a";
+        if (row.locationx && row.locationy) {
+            loc = row.locationx + "/" + row.locationy;
+        }
+        return <div>{loc}</div>;
+    }
+
+    buildBonus(cell, row) {
+        if (row.kind == 2) {
+            return <div>atk: {cell.attack} acc: {cell.accuracy}</div>
+        }
+        if (row.kind == 1) {
+            return <div>def: {cell.defense}</div>
+        }
+    }
+
+    buildPrice(cell, row) {
+        var split = getDenominationParts(cell);
+        return <div>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></div>;
+    }
+
+
+    buildPPU(cell, row) {
+        var ppu = <div>0 <img src={cImg}/></div>;
+        if (cell) {
+           ppu = <div>{Number(cell).toPrecision(2)} <img src={cImg}/></div>;
+        }
+        return ppu;
+    }
+
+    buildSeen(cell, row) {
+        var seen = new Date(cell);
+        var day = seen.getDate();
+        var monthIndex = seen.getMonth();
+        var year = seen.getFullYear();
+
+        return <div>{day} {monthNames[monthIndex]} {year}</div>
+    }
+
+    filterPrice(cell, row) {
+        return cell.type
+    }
+
+
+    onTableChange(type, { page, sizePerPage, sortField, sortOrder }) {
+        console.log(type);
+
+        switch(type) {
+            case 'pagination':
+                if (this.props.item.search) {
+                    this.props.dispatch(getItemPrices(this.props.item.search, (page-1)*sizePerPage, sizePerPage, page));
+                }
+                break;
+            case 'sort':
+                console.log(sortField, sortOrder);
+                var sorting = (a,b) => {
+                    if (a[sortField] > b[sortField]) {
+                        return sortOrder == 'asc'?1:-1;
+                    }
+                    if (a[sortField] < b[sortField]) {
+                        return sortOrder == 'asc'?-1:1;
+                    }
+                    return 0;
+                }
+                this.props.dispatch(sortItemPrices(this.props.item.prices, sorting));
+                break;
+        }
+
+    }
+
+    componentWillMount() {
+        this.options.currPage = 1;
+        this.options.page = 1;
+        this.options.sizePerPage = parseInt(this.props.item.currentSizePerPage);
+        this.options.currSizePerPage = parseInt(this.props.item.currentSizePerPage);
+    }
+
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        this.options.currPage = nextProps.item.currentPage;
+        this.options.page = nextProps.item.currentPage;
+        this.options.sizePerPage = parseInt(nextProps.item.currentSizePerPage);
+        this.options.currSizePerPage = parseInt(nextProps.item.currentSizePerPage);
+        this.options.totalSize = parseInt(nextProps.item.totalPriceCount);
+
+    }
+
+
     render() {
-
-
-        this.tableRows = [];
-        let kind = this.props.item.kind;
-
-        this.props.item.prices.map((entry, index) => {
-            var seen = new Date(entry.seen);
-            var day = seen.getDate();
-            var monthIndex = seen.getMonth();
-            var year = seen.getFullYear();
-            let split = getDenominationParts(entry.price);
-            let loc = "n/a";
-            if (entry.locationx && entry.locationy) {
-                loc = entry.locationx + "/" + entry.locationy;
-            }
-
-            this.tableRows.push(<tr key={index}>
-                <th>{entry.item}</th>
-                <td>{entry.price_per_unit != undefined ? Number(entry.price_per_unit).toPrecision(2):0} <img src={cImg}/></td>
-                <td>{split.p} <img src={pImg}/> {split.g} <img src={gImg}/> {split.s} <img src={sImg}/> {split.c} <img src={cImg}/> </td>
-                <td>{entry.amount}</td>
-                <td scope="row" >{day} {monthNames[monthIndex]} {year}</td>
-                <td>{loc}</td>
-                {kind == 2 && <td>{entry.bonus.attack}/{entry.bonus.accuracy}</td>}
-                {kind == 1 && <td>{entry.bonus.defense}</td>}
-            </tr>)
-        })
-
         return (
-            <div className="col-md-7 mb-4" id="price-list">
+            <div className="col-md-7 mb-4" id="prices">
                 <div className="card shadow-nohover">
                     <div className="card-body">
-                        <table className="table table-hover borderless price-list-table">
-                            <thead className="blue lighten-4">
-                            <tr>
-                                <th>Item</th>
-                                <th>PPU <br/><small>(price per unit)</small></th>
-                                <th>Price</th>
-                                <th>Amount</th>
-                                <th>Seen</th>
-                                <th>Location</th>
-                                {kind == 2 && <th>AT/AC</th>}
-                                {kind == 1 && <th>DE</th>}
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            {this.tableRows}
-                            </tbody>
-
-                        </table>
+                        <BootstrapTable onTableChange={this.onTableChange.bind(this)} remote bootstrap4 bordered={false} keyField="id" data={this.props.item.prices} columns={ this.columns } pagination={paginationFactory(this.options)}/>
                     </div>
                 </div>
             </div>);
