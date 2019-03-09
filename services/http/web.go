@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -32,6 +33,7 @@ func RunServer(address string, allUseCases *domain.UseCases) {
 	apiRouter.HandleFunc("/stats", GetStats(allUseCases)).Methods("GET")
 	apiRouter.HandleFunc("/price", AddPrice(allUseCases)).Methods("POST")
 	apiRouter.HandleFunc("/prices", GetPricesByTerm(allUseCases)).Methods("GET")
+	apiRouter.HandleFunc("/lastseenprices", GetLastSeenPricesByTerm(allUseCases)).Methods("GET")
 	baseRouter.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 	//baseRouter.Use(LogRequestMiddleware, AuthMiddleware)
 	baseRouter.Use(LogRequestMiddleware)
@@ -71,8 +73,7 @@ func GetStats(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Requ
 	}
 }
 
-
-func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
+func GetLastSeenPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
 	return func(resp http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 		if ctx == nil {
@@ -85,13 +86,59 @@ func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *ht
 		server := v.Get("s")
 
 		var err error
+		period, err := strconv.Atoi(v.Get("p"))
+
+		result, err := allUseCases.ItemUseCase.GetLastSeenPrices(item, server, period, ctx)
+
+		if err != nil {
+			log.Error(err.Error())
+			fmt.Fprintf(resp, "%s", err)
+		}
+
+		log.Debugf("fetched result: %s", result)
+
+		fmt.Fprintf(resp, "%s", result)
+
+	}
+}
+
+func GetPricesByTerm(allUseCases *domain.UseCases) func(http.ResponseWriter, *http.Request) {
+	return func(resp http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		if ctx == nil {
+			ctx = context.Background()
+		}
+
+		v := r.URL.Query()
+
+		item := v.Get("i")
+		server := v.Get("s")
+		sort := v.Get("sp")
+		order := v.Get("so")
+
+		var err error
 		bonusAttack, err := strconv.Atoi(v.Get("at"))
 		bonusAccuracy, err := strconv.Atoi(v.Get("ac"))
 		bonusDefense, err := strconv.Atoi(v.Get("de"))
 		from, err := strconv.Atoi(v.Get("f"))
 		size, err := strconv.Atoi(v.Get("c"))
 
-		result, err := allUseCases.ItemUseCase.GetItemPrices(item, server, from, size, bonusAttack, bonusAccuracy, bonusDefense, ctx)
+		var asc = false
+		if order == "asc" {
+			asc = true
+		}
+
+
+
+		var sortParam = make([]string, 0)
+		if strings.Contains(sort, "seen") {
+			sortParam = append(sortParam, "seen")
+		}
+		if strings.Contains(sort, "price_per_unit") {
+			sortParam = append(sortParam, "price_per_unit")
+		}
+
+		result, err := allUseCases.ItemUseCase.GetItemPrices(item, server, sortParam, from, size, bonusAttack, bonusAccuracy, bonusDefense, asc, ctx)
 
 		if err != nil {
 			log.Error(err.Error())

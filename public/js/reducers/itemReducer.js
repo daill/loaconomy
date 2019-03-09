@@ -4,7 +4,7 @@ import {
     ITEM_ADD_PRICE,
     ITEM_CLEAR_STATE,
     ITEM_GET_PRICES,
-    ITEM_SORT_PRICES
+    ITEM_SORT_PRICES, ITEM_LAST_SEEN_PRICES, ITEM_LAST_SEEN_PRICES_LOADING_FAILURE
 } from '../actions/itemActions';
 
 const initialState = {
@@ -14,7 +14,7 @@ const initialState = {
 
 export default function itemReducer(state=initialState, action) {
     switch(action.type) {
-        case ITEM_LOADING_BEGIN:
+        case ITEM_LOADING_BEGIN, ITEM_LAST_SEEN_PRICES_LOADING_FAILURE:
             return {
                 ...state,
                 loading: true,
@@ -43,7 +43,7 @@ export default function itemReducer(state=initialState, action) {
                 ...action.payload
             };
 
-        case ITEM_LOADING_FAILURE:
+        case ITEM_LOADING_FAILURE, ITEM_LAST_SEEN_PRICES_LOADING_FAILURE:
             return {
                 ...state,
                 loading: false,
@@ -51,10 +51,18 @@ export default function itemReducer(state=initialState, action) {
                 payload: {...action.payload}
             };
 
+
         case ITEM_SORT_PRICES:
             return {
                 ...state,
                 prices: action.payload
+            };
+
+        case ITEM_LAST_SEEN_PRICES:
+            return {
+                ...state,
+                last_seen_prices: action.payload.prices,
+                period: action.payload.period
             };
 
         default:

@@ -10,7 +10,7 @@ import gImg from '../../img/g.png';
 import pImg from '../../img/p.png';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory, {PaginationProvider} from 'react-bootstrap-table2-paginator';
-import {getItemPrices, sortItemPrices} from "../actions/itemActions";
+import {getItemPrices} from "../actions/pricesActions";
 
 
 
@@ -26,12 +26,12 @@ class PriceListComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.item.prices.reverse();
+        this.props.prices.values.reverse();
 
         this.options = {
-            sizePerPage: parseInt(this.props.item.currentSizePerPage),
-            currSizePerPage: parseInt(this.props.item.currentSizePerPage),
-            totalSize: parseInt(this.props.item.totalPriceCount)
+            sizePerPage: parseInt(this.props.prices.currentSizePerPage),
+            currSizePerPage: parseInt(this.props.prices.currentSizePerPage),
+            totalSize: parseInt(this.props.prices.totalPriceCount)
         }
 
         this.columns = [
@@ -46,8 +46,23 @@ class PriceListComponent extends React.Component {
             },{
                 dataField: 'price',
                 text: 'Price',
-                sort: true,
                 formatter: this.buildPrice
+            },{
+                dataField: 'amount',
+                text: 'Amount',
+            },{
+                dataField: 'seen',
+                text: 'Seen',
+                sort: true,
+                formatter: this.buildSeen
+            },{
+                dataField: 'bonus',
+                text: 'Bonus',
+                formatter: this.buildBonus
+            },{
+                dataField: 'location',
+                text: 'Loc',
+                formatter: this.buildLoc
             }
         ]
     }
@@ -84,11 +99,9 @@ class PriceListComponent extends React.Component {
 
 
     buildPPU(cell, row) {
-        var ppu = <div>0 <img src={cImg}/></div>;
-        if (cell) {
-           ppu = <div>{Number(cell).toPrecision(2)} <img src={cImg}/></div>;
-        }
-        return ppu;
+        var split = getDenominationParts(parseInt(cell));
+        split.c = Number(parseInt(split.c)+(cell-parseInt(cell))).toPrecision(2);
+        return <div>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></div>;
     }
 
     buildSeen(cell, row) {
@@ -110,22 +123,14 @@ class PriceListComponent extends React.Component {
 
         switch(type) {
             case 'pagination':
-                if (this.props.item.search) {
-                    this.props.dispatch(getItemPrices(this.props.item.search, (page-1)*sizePerPage, sizePerPage, page));
+                if (this.props.prices.search) {
+                    this.props.dispatch(getItemPrices(this.props.prices.search, (page-1)*sizePerPage, sizePerPage, page, this.props.prices.currentSortField, this.props.prices.currentSortOrder));
                 }
                 break;
             case 'sort':
-                console.log(sortField, sortOrder);
-                var sorting = (a,b) => {
-                    if (a[sortField] > b[sortField]) {
-                        return sortOrder == 'asc'?1:-1;
-                    }
-                    if (a[sortField] < b[sortField]) {
-                        return sortOrder == 'asc'?-1:1;
-                    }
-                    return 0;
+                if (this.props.prices.search) {
+                    this.props.dispatch(getItemPrices(this.props.prices.search, (page-1)*sizePerPage, sizePerPage, page, sortField, sortOrder));
                 }
-                this.props.dispatch(sortItemPrices(this.props.item.prices, sorting));
                 break;
         }
 
@@ -134,16 +139,16 @@ class PriceListComponent extends React.Component {
     componentWillMount() {
         this.options.currPage = 1;
         this.options.page = 1;
-        this.options.sizePerPage = parseInt(this.props.item.currentSizePerPage);
-        this.options.currSizePerPage = parseInt(this.props.item.currentSizePerPage);
+        this.options.sizePerPage = parseInt(this.props.prices.currentSizePerPage);
+        this.options.currSizePerPage = parseInt(this.props.prices.currentSizePerPage);
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        this.options.currPage = nextProps.item.currentPage;
-        this.options.page = nextProps.item.currentPage;
-        this.options.sizePerPage = parseInt(nextProps.item.currentSizePerPage);
-        this.options.currSizePerPage = parseInt(nextProps.item.currentSizePerPage);
-        this.options.totalSize = parseInt(nextProps.item.totalPriceCount);
+        this.options.currPage = nextProps.prices.currentPage;
+        this.options.page = nextProps.prices.currentPage;
+        this.options.sizePerPage = parseInt(nextProps.prices.currentSizePerPage);
+        this.options.currSizePerPage = parseInt(nextProps.prices.currentSizePerPage);
+        this.options.totalSize = parseInt(nextProps.prices.totalPriceCount);
 
     }
 
@@ -153,7 +158,7 @@ class PriceListComponent extends React.Component {
             <div className="col-md-7 mb-4" id="prices">
                 <div className="card shadow-nohover">
                     <div className="card-body">
-                        <BootstrapTable onTableChange={this.onTableChange.bind(this)} remote bootstrap4 bordered={false} keyField="id" data={this.props.item.prices} columns={ this.columns } pagination={paginationFactory(this.options)}/>
+                        <BootstrapTable onTableChange={this.onTableChange.bind(this)} remote bootstrap4 bordered={false} keyField="id" data={this.props.prices.values} columns={ this.columns } pagination={paginationFactory(this.options)}/>
                     </div>
                 </div>
             </div>);

@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import $ from "jquery";
-import {getAllItems, getItemsByTerm} from '../actions/itemsActions';
-import {getItemPrices} from '../actions/itemActions';
 
 import '../../ext/js/bootstrap';
 import HeaderComponent from './HeaderComponent';
@@ -11,9 +9,10 @@ import FooterComponent from './FooterComponent';
 import PriceGraphComponent from './PriceGraphComponent';
 import PriceListComponent from './PriceListComponent';
 import GetItemPriceForm from './GetItemPriceForm';
-import {getStats} from '../actions/statsActions';
 import * as d3 from "d3";
 import StatsComponent from "./StatsComponent";
+import {getItemPrices} from "../actions/pricesActions";
+import {getLastSeenItemPrices} from "../actions/lastSeenPricesActions";
 
 
 
@@ -26,7 +25,8 @@ class HomeScreen extends React.Component {
     }
 
     findItemData(values) {
-        this.props.dispatch(getItemPrices(values, 0, 1, 1));
+        this.props.dispatch(getItemPrices(values, 0, 10, 1, "price_per_unit", "asc"));
+        this.props.dispatch(getLastSeenItemPrices(values, 30));
     }
 
     render() {
@@ -46,11 +46,11 @@ class HomeScreen extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {this.props.item.prices && this.props.item.prices.length > 0 &&
+
                                             <div className="row wow fadeIn">
-                                                <PriceListComponent/>
-                                                <PriceGraphComponent item={this.props.item}/>
-                                            </div>}
+                                                {this.props.prices && this.props.prices.values && this.props.prices.values.length > 0 && <PriceListComponent/>}
+                                                {this.props.last_seen_prices && this.props.last_seen_prices.values && this.props.last_seen_prices.values.length > 0 && <PriceGraphComponent/>}
+                                            </div>
                                         </div>
                                         <div className="col-md-2 mb-4">
                                             <div className="row wow fadeIn">

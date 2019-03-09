@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import $ from "jquery";
-import {addItemPrice, cleareItemState} from '../actions/itemActions';
-import {getAllItems, getItemsByTerm, itemsInputChange} from '../actions/itemsActions';
 import '../../ext/js/bootstrap';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
@@ -14,6 +12,7 @@ import cImg from '../../img/c.png';
 import sImg from '../../img/s.png';
 import gImg from '../../img/g.png';
 import pImg from '../../img/p.png';
+import {addPrice} from "../actions/priceActions";
 
 
 
@@ -31,7 +30,7 @@ class AddPriceScreen extends React.Component {
     addItem(values){
         values.price_per_unit = this.formValues.price/this.formValues.amount;
         values.kind = parseInt(values.kind);
-        this.props.dispatch(addItemPrice(values));
+        this.props.dispatch(addPrice(values));
         this.props.dispatch(reset('addPriceForm'));
     }
 

@@ -10,6 +10,12 @@ type itemUseCase struct {
 	contextTimeout time.Duration
 }
 
+func (iUC *itemUseCase) GetLastSeenPrices(term, server string, period int, ctx context.Context) ([]byte, error) {
+	result, err := iUC.itemRepository.GetLastSeenPrices(term, server, period, ctx)
+
+	return result, err
+}
+
 func (iUC *itemUseCase) TestItemExists(term string, ctx context.Context) (bool, error) {
 
 	result, err := iUC.itemRepository.TestItemExists(term, ctx)
@@ -17,9 +23,9 @@ func (iUC *itemUseCase) TestItemExists(term string, ctx context.Context) (bool, 
 	return result, err
 }
 
-func (iUC *itemUseCase) GetItemPrices(term, server string, from, size, bonusAttack, bonusAccuracy, bonusDefense int, ctx context.Context) (string, error) {
+func (iUC *itemUseCase) GetItemPrices(term, server string, sortParam []string, from, size, bonusAttack, bonusAccuracy, bonusDefense int, asc bool, ctx context.Context) (string, error) {
 
-	result, err := iUC.itemRepository.GetItemPrices(term, server, from, size, bonusAttack, bonusAccuracy, bonusDefense, ctx)
+	result, err := iUC.itemRepository.GetItemPrices(term, server, sortParam, from, size, bonusAttack, bonusAccuracy, bonusDefense, asc, ctx)
 
 	return string(result), err
 }

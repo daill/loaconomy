@@ -17,7 +17,49 @@ type elasticItemRepository struct {
 	PriceIndex string
 }
 
-func (e *elasticItemRepository) GetItemPrices(term, server string, from, size, bonusAttack, bonusAccuracy, bonusDefense int, ctx context.Context) ([]byte, error) {
+func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period int, ctx context.Context) ([]byte, error) {
+	itemQuery := elastic.NewTermQuery("item.raw", term)
+	serverQuery := elastic.NewTermQuery("server.raw", server)
+	rangeQuery := elastic.NewRangeQuery("seen").Gte(fmt.Sprintf("now-%dd/d", period))
+	sourceContext := elastic.NewFetchSourceContext(true).Include("price_per_unit", "seen")
+
+	boolQuery := elastic.NewBoolQuery().Must(itemQuery,serverQuery, rangeQuery)
+
+	var searchResult *elastic.SearchResult
+	searchResult, err := e.Client.Conn.Search().
+		Index(e.PriceIndex).
+		Type("price").
+		StoredFields("price_per_unit").
+		Query(boolQuery).
+		Sort("seen", true).
+		Size(2000).
+		FetchSourceContext(sourceContext).
+		Do(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	hitArray := make([]json.RawMessage, len(searchResult.Hits.Hits))
+	for index, hit := range searchResult.Hits.Hits {
+		b := []byte(*hit.Source)
+		idString := fmt.Sprintf(",\"id\":\"%s\"}", hit.Id)
+		b = b[:len(b)-1]
+		b = append(b, []byte(idString)...)
+		hitArray[index] = json.RawMessage(b)
+	}
+
+	var result []byte
+	result, err = json.Marshal(hitArray)
+	if err != nil {
+		return nil, err
+	}
+
+
+	return result, nil
+}
+
+func (e *elasticItemRepository) GetItemPrices(term, server string, sortParam []string, from, size, bonusAttack, bonusAccuracy, bonusDefense int, asc bool, ctx context.Context) ([]byte, error) {
 	item, err := e.GetItemByTerm(term, ctx)
 
 	itemQuery := elastic.NewTermQuery("item.raw", term)
@@ -39,11 +81,17 @@ func (e *elasticItemRepository) GetItemPrices(term, server string, from, size, b
 	}
 
 	var searchResult *elastic.SearchResult
-	searchResult, err = e.Client.Conn.Search().
+
+	searchQuery :=  e.Client.Conn.Search().
 		Index(e.PriceIndex).
 		Type("price").
-		Query(boolQuery).
-		Sort("seen", true).
+		Query(boolQuery)
+
+	for _, e := range sortParam {
+		searchQuery.Sort(e, asc)
+	}
+
+	searchResult, err = searchQuery.
 		From(from).Size(size).
 		Do(ctx)
 

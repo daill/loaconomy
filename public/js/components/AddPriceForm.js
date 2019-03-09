@@ -8,9 +8,9 @@ import { PulseLoader } from 'react-spinners';
 import {Field, change, reduxForm, reset, formValueSelector} from 'redux-form'
 import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
-import {addItemPrice, cleareItemState} from '../actions/itemActions';
 import defaults from '../utils/constants';
 import {minLength3, maxValue99, minValue0, minValue4000, maxLength24, maxValue3, maxValue25, maxValue4000, required, notNegative} from "../utils/utils";
+import {priceClearState} from "../actions/priceActions";
 
 
 const parseNumber = value => !value ? null : Number(value);
@@ -39,9 +39,9 @@ class AddPriceForm extends React.Component {
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        if(this.props.item && this.props.item.status === "ok") {
+        if(this.props.price && this.props.price.status === "ok") {
             if (this.props.pristine === true && nextProps.pristine === false) {
-                this.props.dispatch(cleareItemState());
+                this.props.dispatch(priceClearState());
             }
         }
     }
