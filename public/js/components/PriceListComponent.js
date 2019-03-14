@@ -11,15 +11,7 @@ import pImg from '../../img/p.png';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory, {PaginationProvider} from 'react-bootstrap-table2-paginator';
 import {getItemPrices} from "../actions/pricesActions";
-
-
-
-const monthNames = [
-    "Jan", "Feb", "Mar",
-    "Apr", "May", "Jun", "Jul",
-    "Aug", "Sep", "Oct",
-    "Nov", "Dec"
-];
+import {monthNames} from '../utils/constants';
 
 
 class PriceListComponent extends React.Component {

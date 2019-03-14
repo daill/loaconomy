@@ -21,6 +21,8 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 	itemQuery := elastic.NewTermQuery("item.raw", term)
 	serverQuery := elastic.NewTermQuery("server.raw", server)
 	rangeQuery := elastic.NewRangeQuery("seen").Gte(fmt.Sprintf("now-%dd/d", period))
+	histoAgg := elastic.NewHistogramAggregation().Field("price_per_unit").MinDocCount(1).Interval(5)
+	extStatsAgg := elastic.NewExtendedStatsAggregation().Field("price_per_unit")
 	sourceContext := elastic.NewFetchSourceContext(true).Include("price_per_unit", "seen")
 
 	boolQuery := elastic.NewBoolQuery().Must(itemQuery,serverQuery, rangeQuery)
@@ -30,7 +32,8 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 		Index(e.PriceIndex).
 		Type("price").
 		StoredFields("price_per_unit").
-		Query(boolQuery).
+		Query(boolQuery).Aggregation("ppu_buckets", histoAgg.SubAggregation("stats", extStatsAgg)).
+		Aggregation("overall_stats", extStatsAgg).
 		Sort("seen", true).
 		Size(2000).
 		FetchSourceContext(sourceContext).
@@ -49,14 +52,22 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 		hitArray[index] = json.RawMessage(b)
 	}
 
-	var result []byte
-	result, err = json.Marshal(hitArray)
+	var result bytes.Buffer
+	var hits []byte
+	hits, err = json.Marshal(hitArray)
 	if err != nil {
 		return nil, err
 	}
 
+	result.WriteString("{\"values\": ")
+	result.Write(hits)
+	result.WriteString(", ")
+	var aggBytes []byte
+	aggBytes, err = json.Marshal(searchResult.Aggregations)
+	result.Write(aggBytes[1:len(aggBytes)-1])
+	result.WriteString("}")
 
-	return result, nil
+	return result.Bytes(), nil
 }
 
 func (e *elasticItemRepository) GetItemPrices(term, server string, sortParam []string, from, size, bonusAttack, bonusAccuracy, bonusDefense int, asc bool, ctx context.Context) ([]byte, error) {

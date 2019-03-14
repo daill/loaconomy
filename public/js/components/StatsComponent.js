@@ -26,7 +26,7 @@ class StatsComponent extends React.Component {
                         </div>
                         <div className="card-body">
                             <ul className="undecorated">
-                                <li>{this.props.stats.item_stats.items_known} in Database</li>
+                                <li>{this.props.stats.item_stats.items_known} items in database</li>
 
                                 <li>{this.props.stats.price_stats.value} prices seen</li>
                             </ul>

@@ -1,13 +1,6 @@
 import {
-    ITEM_LOADING_BEGIN,
-    ITEM_LOADING_FAILURE,
-    ITEM_ADD_PRICE,
-    ITEM_CLEAR_STATE,
-    ITEM_GET_PRICES,
-    ITEM_SORT_PRICES, ITEM_LAST_SEEN_PRICES, ITEM_LAST_SEEN_PRICES_LOADING_FAILURE
-} from '../actions/itemActions';
-import {
-    LAST_SEEN_PRICES_CLEAR_STATE, LAST_SEEN_PRICES_GET,
+    LAST_SEEN_PRICES_CLEAR_STATE,
+    LAST_SEEN_PRICES_GET,
     LAST_SEEN_PRICES_LOADING_BEGIN,
     LAST_SEEN_PRICES_LOADING_FAILURE
 } from "../actions/lastSeenPricesActions";
@@ -34,6 +27,8 @@ export default function lastSeenPricesReducer(state=initialState, action) {
                 ...state,
                 loading: false,
                 values: action.payload.prices,
+                buckets: action.payload.buckets,
+                stats: action.payload.stats,
                 period: action.payload.period
             };
 

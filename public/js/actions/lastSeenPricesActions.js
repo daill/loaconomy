@@ -15,9 +15,9 @@ export const lastSeenPricesLoadingFailure = (error) => ({
     payload: {error},
 });
 
-export const lastSeenPricesGet = (prices, period) => ({
+export const lastSeenPricesGet = (json, period) => ({
     type: LAST_SEEN_PRICES_GET,
-    payload: {prices: prices, period: period}
+    payload: {prices: json.values, buckets: json.ppu_buckets.buckets, period: period, stats: json.overall_stats}
 
 });
 

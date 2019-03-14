@@ -19,9 +19,6 @@ class HeaderComponent extends React.Component {
             <li className="nav-item active" key="addprice">
                 <Link className="nav-link waves-effect" to="/addprice"><i className="fas fa-money-bill-alt"></i> Add price</Link>
             </li>,
-            <li className="nav-item active" key="itemlist">
-                <Link className="nav-link waves-effect" to="/itemlist"><i className="fas fa-th-list"></i> Itemlist</Link>
-            </li>
         ]
 
 

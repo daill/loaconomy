@@ -4,6 +4,12 @@ import {connect} from 'react-redux';
 import $ from "jquery";
 import '../../ext/js/bootstrap';
 import * as d3 from "d3";
+import {monthNames} from '../utils/constants';
+import {getDenominationParts} from '../utils/utils';
+import pImg from "../../img/p.png";
+import gImg from "../../img/g.png";
+import sImg from "../../img/s.png";
+import cImg from "../../img/c.png";
 
 class PriceGraphComponent extends React.Component {
 
@@ -83,8 +89,6 @@ class PriceGraphComponent extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log("update");
-
         if (nextProps.last_seen_prices.values && this.props.last_seen_prices.loading == true && nextProps.last_seen_prices.loading == false && nextProps.last_seen_prices.error != true){
             d3.select("#chart > svg").remove();
             this.renderD3(nextProps.last_seen_prices.values);
@@ -93,12 +97,45 @@ class PriceGraphComponent extends React.Component {
     }
 
     render() {
+        var ppuStats = this.props.last_seen_prices.buckets;
+        var priceStats = null;
+        var priceRecommendation = null;
+        if (ppuStats.length > 0) {
+            var biggestBucket = ppuStats.reduce(function(a, b) {return a.doc_count > b.doc_count ? a : b}, 0);
+
+            var split = getDenominationParts(parseInt(biggestBucket.stats.min));
+            split.c = Number(parseInt(split.c)+(biggestBucket.stats.min-parseInt(biggestBucket.stats.min))).toPrecision(2);
+            var min = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
+            split = getDenominationParts(parseInt(biggestBucket.stats.max));
+            split.c = Number(parseInt(split.c)+(biggestBucket.stats.max-parseInt(biggestBucket.stats.max))).toPrecision(2);
+            var max = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
+            priceStats = <li><i className="fas fa-grip-lines details-icon"></i> most seen prices between {min} and {max}</li>
+            split = getDenominationParts(parseInt(biggestBucket.stats.avg));
+            split.c = Number(parseInt(split.c)+(biggestBucket.stats.avg-parseInt(biggestBucket.stats.avg))).toPrecision(2);
+            var avg = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
+            priceRecommendation = <li><i className="fas fa-grip-lines details-icon"></i> most seen prices average price {avg}</li>
+        }
+
+
+        var seen = new Date(this.props.last_seen_prices.values[this.props.last_seen_prices.values.length-1].seen);
+        var day = seen.getDate();
+        var monthIndex = seen.getMonth();
+        var year = seen.getFullYear();
+        var newestEntry =  <li>newest from {day} {monthNames[monthIndex]} {year}</li>
+
+
         return (<div className="col-md-5 mb-4">
                     <div className="row wow fadeIn">
                         <div className="col-md-12">
                             <div className="card shadow-nohover mb-4">
+                                <div className="card-header">Details</div>
                                 <div className="card-body">
-
+                                    <ul className="undecorated">
+                                        <li>{this.props.prices.totalPriceCount} prices found</li>
+                                        {newestEntry}
+                                        {priceStats}
+                                        {priceRecommendation}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
