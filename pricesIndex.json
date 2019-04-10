@@ -1,0 +1,81 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "analysis": {
+      "analyzer": {
+        "autocomplete": {
+          "type":      "custom",
+          "tokenizer": "autocomplete",
+          "filter": ["lowercase"]
+        },
+        "autocomplete_search": {
+          "tokenizer": "lowercase"
+        }
+      }, "tokenizer": {
+        "autocomplete": {
+          "type": "edge_ngram",
+          "min_gram": 2,
+          "max_gram": 10,
+          "token_chars": [
+            "letter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "price": {
+      "properties": {
+        "item": {
+          "type": "text",
+          "fields": {
+            "raw": {
+              "type":  "keyword"
+            }
+          },
+          "fielddata": true
+        },
+        "amount": {
+          "type": "integer"
+        },
+        "price_per_unit": {
+          "type": "float"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "server": {
+          "type": "text",
+          "fields": {
+            "raw": {
+              "type":  "keyword"
+            }
+          }
+        },
+        "location.x" : {
+          "type": "float"
+
+        },
+        "location.y": {
+          "type": "float"
+
+        },
+        "seen": {
+          "type": "date"
+        },
+        "kind": {
+          "type": "integer"
+        },
+        "bonus.accuracy": {
+          "type": "integer"
+        },
+        "bonus.defense": {
+          "type": "integer"
+        },
+        "bonus.attack": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

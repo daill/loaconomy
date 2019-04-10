@@ -19,7 +19,9 @@ class PriceGraphComponent extends React.Component {
     }
 
     componentDidMount() {
-        this.renderD3(this.props.last_seen_prices.values);
+        if(this.props.last_seen_prices.values) {
+            this.renderD3(this.props.last_seen_prices.values);
+        }
     }
 
     renderD3(data) {
@@ -97,32 +99,57 @@ class PriceGraphComponent extends React.Component {
     }
 
     render() {
-        var ppuStats = this.props.last_seen_prices.buckets;
-        var priceStats = null;
-        var priceRecommendation = null;
-        if (ppuStats.length > 0) {
-            var biggestBucket = ppuStats.reduce(function(a, b) {return a.doc_count > b.doc_count ? a : b}, 0);
+        var errorMessage = <span>Prices older then 30 days</span>;
 
-            var split = getDenominationParts(parseInt(biggestBucket.stats.min));
-            split.c = Number(parseInt(split.c)+(biggestBucket.stats.min-parseInt(biggestBucket.stats.min))).toPrecision(2);
-            var min = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
-            split = getDenominationParts(parseInt(biggestBucket.stats.max));
-            split.c = Number(parseInt(split.c)+(biggestBucket.stats.max-parseInt(biggestBucket.stats.max))).toPrecision(2);
-            var max = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
-            priceStats = <li><i className="fas fa-grip-lines details-icon"></i> most seen prices between {min} and {max}</li>
-            split = getDenominationParts(parseInt(biggestBucket.stats.avg));
-            split.c = Number(parseInt(split.c)+(biggestBucket.stats.avg-parseInt(biggestBucket.stats.avg))).toPrecision(2);
-            var avg = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
-            priceRecommendation = <li><i className="fas fa-grip-lines details-icon"></i> most seen prices average price {avg}</li>
+        var liCss = "bg-transparent border-0"
+
+        if (this.props.last_seen_prices.values && this.props.last_seen_prices.values.length > 0) {
+            var ppuStats = this.props.last_seen_prices.stats;
+            var priceStats = null;
+            var priceAvg = null;
+            if (this.props.last_seen_prices.buckets.length > 0) {
+                var biggestBucket = this.props.last_seen_prices.buckets.reduce(function(a, b) {return a.doc_count > b.doc_count ? a : b}, 0);
+
+                var split = getDenominationParts(parseInt(biggestBucket.bucket_stats.min));
+                split.c = Number(parseInt(split.c)+(biggestBucket.bucket_stats.min-parseInt(biggestBucket.bucket_stats.min))).toPrecision(2);
+                var min = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
+                split = getDenominationParts(parseInt(biggestBucket.bucket_stats.max));
+                split.c = Number(parseInt(split.c)+(biggestBucket.bucket_stats.max-parseInt(biggestBucket.bucket_stats.max))).toPrecision(2);
+                var max = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
+                priceStats = <li className={liCss}><i className="fas fa-sort text-info mx-2"/>most seen prices between {min} and {max}</li>
+                split = getDenominationParts(parseInt(biggestBucket.bucket_stats.avg));
+                split.c = Number(parseInt(split.c)+(biggestBucket.bucket_stats.avg-parseInt(biggestBucket.bucket_stats.avg))).toPrecision(2);
+                var avg = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
+                priceAvg = <li className={liCss}><i className="fas fa-ruler-horizontal text-info mx-2"/> most seen prices average price {avg}</li>
+
+            }
+
+
+            var seen = new Date(this.props.last_seen_prices.values[this.props.last_seen_prices.values.length-1].seen);
+            var day = seen.getDate();
+            var monthIndex = seen.getMonth();
+            var year = seen.getFullYear();
+            var newestEntry =  <li className={liCss}><i className="fas fa-history text-info mx-2 fa-rotate-90"/> newest from {day} {monthNames[monthIndex]} {year}</li>
+
+            var pricetrend = null;
+            var recommendation = parseInt(biggestBucket.bucket_stats.avg)+parseInt(biggestBucket.bucket_stats.variance)
+            split = getDenominationParts(recommendation);
+            split.c = Number(parseInt(split.c)+(recommendation-parseInt(recommendation))).toPrecision(2);
+            if (this.props.last_seen_prices.seen_range[0].doc_count > 2 && this.props.last_seen_prices.seen_range[1].doc_count > 2){
+                var y = (this.props.last_seen_prices.seen_range[1].ppu_stats.avg-this.props.last_seen_prices.seen_range[0].ppu_stats.avg);
+                var x = (this.props.last_seen_prices.seen_range[1].seen_stats.avg-this.props.last_seen_prices.seen_range[0].seen_stats.avg)/1000/60/60; //normalized to minutes
+                var pitch = Number.parseFloat(y/x).toPrecision(2);
+
+                var trendIconRotation = pitch > 0 ? 'fa-rotate-180': (pitch < 0 ? 'fa-rotate-360' : 'fa-rotate-90');
+                var trendStatus = pitch > 0 ? 'rising': (pitch < 0 ? 'falling' : 'flat');
+                pricetrend = <li className={liCss}><i className={"fas fa-arrow-circle-down text-info mx-2 " + trendIconRotation}/> price trend: {trendStatus} (pitch: {pitch})</li>
+            }
+
+
+            var priceRecommendationValue = biggestBucket.bucket_stats.avg*(pitch/10)+biggestBucket.bucket_stats.avg
+            var priceRecommendationSplit = <span>{split.p >0 && split.p} {split.p >0 && <img src={pImg}/>} {split.g>0 && split.g} {split.g>0 && <img src={gImg}/>} {split.s>0 && split.s} {split.s>0 && <img src={sImg}/>} {split.c} <img src={cImg}/></span>;
+            var priceRecommendation = <li className={liCss}><i className="fas fa-balance-scale text-info mx-2 "/> price recommendation: {priceRecommendationSplit} per unit</li>
         }
-
-
-        var seen = new Date(this.props.last_seen_prices.values[this.props.last_seen_prices.values.length-1].seen);
-        var day = seen.getDate();
-        var monthIndex = seen.getMonth();
-        var year = seen.getFullYear();
-        var newestEntry =  <li>newest from {day} {monthNames[monthIndex]} {year}</li>
-
 
         return (<div className="col-md-5 mb-4">
                     <div className="row wow fadeIn">
@@ -131,19 +158,21 @@ class PriceGraphComponent extends React.Component {
                                 <div className="card-header">Details</div>
                                 <div className="card-body">
                                     <ul className="undecorated">
-                                        <li>{this.props.prices.totalPriceCount} prices found</li>
+                                        <li className={liCss}><i className="fas fa-database text-info mx-2"/>{this.props.prices.totalPriceCount} prices found</li>
                                         {newestEntry}
                                         {priceStats}
+                                        {priceAvg}
+                                        {pricetrend}
                                         {priceRecommendation}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                     <div className="row wow fadeIn">
+                    <div className="row wow fadeIn">
                          <div className="col-md-12">
                             <div className="card shadow-nohover">
-                                <div className="card-header">Price trend ({this.props.last_seen_prices.period} days)</div>
+                                <div className="card-header">Price graph ({this.props.last_seen_prices.period} days)</div>
                                 <div className="card-body" id="chart"></div>
                             </div>
                          </div>

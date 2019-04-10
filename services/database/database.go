@@ -18,7 +18,7 @@ func Init(usr, pss, databaseUrl string) *LDB {
 
 	log.Infof("database connection opened")
 
-	info, code, err := client.Ping("http://127.0.0.1:9200").Do(context.Background())
+	info, code, err := client.Ping(databaseUrl).Do(context.Background())
 	if err != nil {
 		panic(err)
 	}

@@ -20,7 +20,7 @@ func main() {
 		panic(err)
 	}
 
-	env := viper.GetString("database.url")
+	env := viper.GetString("environment")
 	if env == utils.TestEnv {
 		log.InitLogging(utils.TestEnv)
 	} else if env == utils.ProductionEnv {

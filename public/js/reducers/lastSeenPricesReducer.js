@@ -28,6 +28,7 @@ export default function lastSeenPricesReducer(state=initialState, action) {
                 loading: false,
                 values: action.payload.prices,
                 buckets: action.payload.buckets,
+                seen_range: action.payload.seen_range,
                 stats: action.payload.stats,
                 period: action.payload.period
             };

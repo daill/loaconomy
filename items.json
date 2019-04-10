@@ -1,0 +1,896 @@
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Ore", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Ore", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Ore", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Ore", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Ore", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Stone", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wood", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Stringy Meat", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Tough Meat", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Tender Meat", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ginseng", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blood", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Lemon Grass", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Bones", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Mushrooms", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Eye", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Beast Blood", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cursed Bones", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Sickly Eye", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Vile Blood", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ethereal Bones", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Decrepid Eye", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cactus", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Moss", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cotton", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fluffy Cotton", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Spider Silk", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Leather Hide", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Beast Leather Hide", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Vile Leather Hide", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Brick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Board", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash Board", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Brightwood Board", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Ingot", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Ingots", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Ingot", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Ingot", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Ingot", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cooking Pot", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Engraving Tool", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Hatchet", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Hunting Knife", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Lockpicks", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Shovel", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Waterskin", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Leather Saddlebags", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Pouch", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Alchemy Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Stove", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Anvil", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Inscription Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Forge", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Carpentry Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Loom", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Stool", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Chair", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fancy Chair", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Large Wooden Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fancy Bench", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Round Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Inn Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fancy Desk", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Campfire", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Shelf", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Stone Fireplace", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Small Bed", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Medium Bed", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Large Bed", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Bookshelf", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Torch", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Barrel", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Chest", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Crate", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Lockbox", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Dresser", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fishing Rod", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Crook", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Small Fence", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gate", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Lesser Heal Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Lesser Mana Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Lesser Stamina Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Heal Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Mana Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Stamina Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Greater Heal Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Greater Mana Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Greater Stamina Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cure Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cloth", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Quilted Cloth", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Silk Cloth", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Leather", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Beast Leather", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Vile Leather", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Bandana", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Bandit Hood", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Mage Hat", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Shorts", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Apron", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Skirt", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Short Sleeve Shirt", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Long Sleeve Shirt", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blacksmith Tunic", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Spellbook", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Refresh Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Heal Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ruin Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Mana Missle Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cure Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Infuse Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Poison Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Teleport Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fireball Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Lightning Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Greater Heal Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wall of Fire Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Frost Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Rock Bombardment Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Mark Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cloak Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Energy Bolt Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Meteor Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Resurrection Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Portal Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Earthquake Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Hammer", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Maul", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe War Mace", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Quarterstaff", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Warhammer", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Pitchfork", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Voulge", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Spear", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Halberd", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Dagger", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Kryss", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Poniard", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Bone Dagger", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Longsword", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Broadsword", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Saber", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Katana", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Great Axe", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Large Axe", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Scale Helm", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Full Plate Helm", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Scale Leggings", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Full Plate Leggings", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Scale Tunic", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Full Plate Tunic", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Brick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Wooden Board", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Ash Board", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Brightwood Board", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Iron", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Copper", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Gold", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Cobalt", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Obsidian", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Cooking Pot", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Engraving Tool", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Hatchet", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Hunting Knife", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Lockpicks", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Shovel", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Waterskin", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Leather Saddlebags", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Pouch", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Alchemy Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Stove", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Anvil", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Inscription Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Forge", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Carpentry Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Loom", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Wooden Stool", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Wooden Chair", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Wooden Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Fancy Chair", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Large Wooden Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Fancy Bench", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Round Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Inn Table", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Fancy Desk", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Campfire", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Shelf", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Stone Fireplace", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Small Bed", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Medium Bed", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Large Bed", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Wooden Bookshelf", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Torch", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Barrel", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Chest", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Crate", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Lockbox", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Dresser", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Fishing Rod", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Crook", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Small Fence", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Gate", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Lesser Heal Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Lesser Mana Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Lesser Stamina Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Heal Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Mana Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Stamina Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Greater Heal Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Greater Mana Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Greater Stamina Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Cure Potion", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Cloth", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Quilted Cloth", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Silk Cloth", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Leather", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Beast Leather", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Vile Leather", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Bandana", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Bandit Hood", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Mage Hat", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Shorts", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Apron", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Skirt", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Short Sleeve Shirt", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Long Sleeve Shirt", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Blacksmith Tunic", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Padded Helm", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Linen Helm", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Leather Helm", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Hardened Helm", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Padded Legs", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Linen Legs", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Leather Legs", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Hardened Leggings", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Padded Chest", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Linen Chest", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Mage Robes", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Leather Chest", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Hardened Chest", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Arrow", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Short Bow", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Long Bow", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe War Bow", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Small Shielc", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Buckler", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Recipe Kite Shield", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Frayed Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ancient Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fine Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blank Scroll", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Jerky", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Meat Loaf", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Raw Barrel Fish Fillet", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cooked Barrel Fish", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Raw Tero Fish Fillet", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cooked Tero Fish", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Raw Spotted Tero Fish Fillet", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cooked Spotted Tero", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Raw Four Eyed Salar Fish Fillet", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cooked Four Eyed Salar", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Raw Razor-Fish Fillet", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cooked Razor Fish", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Tattered Map", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Frayed Map", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Fancy Map", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ornate Map", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Devious Map", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Mining Pick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Map of Upper Plains", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Bandage", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Printed Note", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blank Rune", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Arrow", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash Arrow", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood Arrow", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Short Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash Short Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood Short Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Long Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash Long Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood Long Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden War Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash War Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood War Bow", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Small Shield", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash Small Shield", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood Small Shield", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Buckler", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash Buckler", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood Buckler", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Wooden Kite Shield", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Ash Kite Shield", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Blightwood Kite Shield", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Mining Pick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Mining Pick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Mining Pick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Mining Pick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Mining Pick", "kind": "0"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Hammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Hammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Hammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Hammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Hammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Maul", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Maul", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Maul", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Maul", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Maul", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron War Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper War Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold War Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt War Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian War Mace", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Quarterstaff", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Quarterstaff", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Quarterstaff", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Quarterstaff", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Quarterstaff", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Warhammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Warhammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Warhammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Warhammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Warhammer", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Pitchfork", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Pitchfork", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Pitchfork", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Pitchfork", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Pitchfork", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Voulge", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Voulge", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Voulge", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Voulge", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Voulge", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Spear", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Spear", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Spear", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Spear", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Spear", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Halberd", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Halberd", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Halberd", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Halberd", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Halberd", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Kryss", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Kryss", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Kryss", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Kryss", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Kryss", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Poniard", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Poniard", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Poniard", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Poniard", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Poniard", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Bone Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Bone Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Bone Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Bone Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Bone Dagger", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Longsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Longsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Longsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Longsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Longsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Broadsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Broadsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Broadsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Broadsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Broadsword", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Saber", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Saber", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Saber", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Saber", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Saber", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Katana", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Katana", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Katana", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Katana", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Katana", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Great Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Great Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Great Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Great Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Great Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Large Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Large Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Large Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Large Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Large Axe", "kind": "2"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Chain Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Chain Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Chain Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Chain Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Chain Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Scale Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Scale Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Scale Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Scale Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Scale Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Full Plate Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Full Plate Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Full Plate Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Full Plate Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Full Plate Helm", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Chain Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Chain Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Chain Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Chain Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Chain Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Scale Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Scale Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Scale Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Scale Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Scale Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Full Plate Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Full Plate Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Full Plate Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Full Plate Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Full Plate Leggings", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Chain Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Chain Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Chain Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Chain Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Chain Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Scale Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Scale Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Scale Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Scale Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Scale Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Iron Full Plate Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Copper Full Plate Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Gold Full Plate Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Cobalt Full Plate Tunic", "kind": "1"}
+{"index":{"_index" : "items", "_type" : "item"}}
+{"name": "Obsidian Full Plate Tunic", "kind": "1"}

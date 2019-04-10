@@ -14,7 +14,7 @@ import StatsComponent from "./StatsComponent";
 import {getItemPrices} from "../actions/pricesActions";
 import {getLastSeenItemPrices} from "../actions/lastSeenPricesActions";
 
-
+const period = 365;
 
 class HomeScreen extends React.Component {
 
@@ -26,10 +26,23 @@ class HomeScreen extends React.Component {
 
     findItemData(values) {
         this.props.dispatch(getItemPrices(values, 0, 10, 1, "price_per_unit", "asc"));
-        this.props.dispatch(getLastSeenItemPrices(values, 30));
+        this.props.dispatch(getLastSeenItemPrices(values, period));
     }
 
     render() {
+        var pricesOlderThenPeriod = <div className="col-md-5 mb-4">
+            <div className="row wow fadeIn">
+                <div className="col-md-12">
+                    <div className="card shadow-nohover mb-4">
+                        <div className="card-header">Details</div>
+                        <div className="card-body">
+                            <span>Prices older then {period} days. Details not available.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>;
+
         return (<div>
                     <HeaderComponent/>
                         <div id="wrapper">
@@ -48,8 +61,9 @@ class HomeScreen extends React.Component {
                                             </div>
 
                                             <div className="row wow fadeIn">
-                                                {this.props.prices && this.props.prices.values && this.props.prices.values.length > 0 && <PriceListComponent/>}
-                                                {this.props.last_seen_prices && this.props.last_seen_prices.values && this.props.last_seen_prices.values.length > 0 && <PriceGraphComponent/>}
+                                                {this.props.prices && this.props.prices.loading == false && this.props.prices.values && this.props.prices.values.length > 0 && <PriceListComponent/>}
+                                                {this.props.last_seen_prices && this.props.last_seen_prices.loading == false && this.props.last_seen_prices.values && this.props.last_seen_prices.values.length > 0 && <PriceGraphComponent/>}
+                                                {this.props.prices && this.props.prices.loading == false && this.props.prices.values && this.props.prices.values.length > 0 && this.props.last_seen_prices && this.props.last_seen_prices.loading == false && !this.props.last_seen_prices.values  && pricesOlderThenPeriod}
                                             </div>
                                         </div>
                                         <div className="col-md-2 mb-4">

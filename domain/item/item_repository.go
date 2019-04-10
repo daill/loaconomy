@@ -21,8 +21,8 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 	itemQuery := elastic.NewTermQuery("item.raw", term)
 	serverQuery := elastic.NewTermQuery("server.raw", server)
 	rangeQuery := elastic.NewRangeQuery("seen").Gte(fmt.Sprintf("now-%dd/d", period))
-	histoAgg := elastic.NewHistogramAggregation().Field("price_per_unit").MinDocCount(1).Interval(5)
-	extStatsAgg := elastic.NewExtendedStatsAggregation().Field("price_per_unit")
+	extPPUStatsAgg := elastic.NewExtendedStatsAggregation().Field("price_per_unit")
+	extSeenStatsAgg := elastic.NewExtendedStatsAggregation().Field("seen")
 	sourceContext := elastic.NewFetchSourceContext(true).Include("price_per_unit", "seen")
 
 	boolQuery := elastic.NewBoolQuery().Must(itemQuery,serverQuery, rangeQuery)
@@ -30,10 +30,11 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 	var searchResult *elastic.SearchResult
 	searchResult, err := e.Client.Conn.Search().
 		Index(e.PriceIndex).
-		Type("price").
 		StoredFields("price_per_unit").
-		Query(boolQuery).Aggregation("ppu_buckets", histoAgg.SubAggregation("stats", extStatsAgg)).
-		Aggregation("overall_stats", extStatsAgg).
+		Type("price").
+		Query(boolQuery).
+		Aggregation("overall_stats", extPPUStatsAgg).
+		Aggregation("seen_stats", extSeenStatsAgg).
 		Sort("seen", true).
 		Size(2000).
 		FetchSourceContext(sourceContext).
@@ -42,6 +43,14 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 	if err != nil {
 		return nil, err
 	}
+
+	var result bytes.Buffer
+	var aggBytes []byte
+	result.WriteString("{")
+	aggBytes, err = json.Marshal(searchResult.Aggregations)
+	result.Write(aggBytes[1:len(aggBytes)-1])
+
+
 
 	hitArray := make([]json.RawMessage, len(searchResult.Hits.Hits))
 	for index, hit := range searchResult.Hits.Hits {
@@ -52,19 +61,40 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 		hitArray[index] = json.RawMessage(b)
 	}
 
-	var result bytes.Buffer
+	stats, _ := searchResult.Aggregations.Stats("overall_stats")
+	interval := (*stats.Max - *stats.Min)/5
+
+	histoAgg := elastic.NewHistogramAggregation().Field("price_per_unit").MinDocCount(1).Interval(interval)
+
+	stats, _ = searchResult.Aggregations.Stats("seen_stats")
+
+	rangeAgg := elastic.NewRangeAggregation().Field("seen").AddRange(stats.Min, stats.Avg).AddRange(stats.Avg, stats.Max)
+	searchResult, err = e.Client.Conn.Search().
+		Index(e.PriceIndex).
+		Type("price").
+		StoredFields("price_per_unit").
+		Query(boolQuery).
+		Aggregation("ppu_buckets", histoAgg.SubAggregation("bucket_stats", extPPUStatsAgg)).
+		Aggregation("seen_range", rangeAgg.SubAggregation("ppu_stats", extPPUStatsAgg).SubAggregation("seen_stats", extSeenStatsAgg)).
+		Sort("seen", true).
+		Size(2000).
+		FetchSourceContext(sourceContext).
+		Do(ctx)
+
 	var hits []byte
 	hits, err = json.Marshal(hitArray)
 	if err != nil {
 		return nil, err
 	}
 
-	result.WriteString("{\"values\": ")
+	result.WriteString(",\"values\": ")
 	result.Write(hits)
 	result.WriteString(", ")
-	var aggBytes []byte
-	aggBytes, err = json.Marshal(searchResult.Aggregations)
-	result.Write(aggBytes[1:len(aggBytes)-1])
+
+ 	if searchResult != nil {
+		aggBytes, err = json.Marshal(searchResult.Aggregations)
+		result.Write(aggBytes[1:len(aggBytes)-1])
+	}
 	result.WriteString("}")
 
 	return result.Bytes(), nil
