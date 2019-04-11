@@ -1,6 +1,4 @@
-import constants from '../utils/constants';
-import {PRICE_CLEAR_STATE} from "./priceActions";
-
+import {host} from '../utils/constants';
 export const LAST_SEEN_PRICES_GET = 'LAST_SEEN_PRICES_GET';
 export const LAST_SEEN_PRICES_LOADING_BEGIN = 'LAST_SEEN_PRICES_LOADING_BEGIN';
 export const LAST_SEEN_PRICES_LOADING_FAILURE = 'LAST_SEEN_PRICES_LOADING_FAILURE';
@@ -30,7 +28,7 @@ export function getLastSeenItemPrices(values, period) {
     return dispatch => {
         dispatch(lastSeenPricesLoadingBegin());
 
-        let url = "http://localhost:8890/api/lastseenprices?i="+ values.item + "&s=" + values.server + "&p=" + period;
+        let url = host+"/api/lastseenprices?i="+ values.item + "&s=" + values.server + "&p=" + period;
 
         return fetch(encodeURI(url)
             , {

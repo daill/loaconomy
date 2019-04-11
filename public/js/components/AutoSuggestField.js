@@ -1,6 +1,6 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
 import AutoSuggest from 'react-autosuggest';
+import {host} from '../utils/constants';
 
 export default class AutoSuggestField extends React.PureComponent {
     constructor (props) {
@@ -35,7 +35,7 @@ export default class AutoSuggestField extends React.PureComponent {
 
     handleFetch({ value }) {
         if (value.length > 2) {
-            let url = "http://localhost:8890/api/items?s=" + value;
+            let url = host+"/api/items?s=" + value;
             fetch(encodeURI(url), {method: "GET",})
                 .then()
                 .then(res => res.json())

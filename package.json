@@ -1,6 +1,6 @@
 {
   "name": "Locaonomy",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "",
   "main": "",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@gitlab.daill.de:9822/daill/oggy.git"
+    "url": "ssh://git@gitlab.daill.de:9822/daill/loaconomy.git"
   },
   "author": "",
   "license": "ISC",

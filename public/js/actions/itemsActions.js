@@ -1,8 +1,12 @@
+import {host} from '../utils/constants';
+
+
 export const ITEMS_LOADING_BEGIN   = 'ITEMS_LOADING_BEGIN';
 export const ITEMS_LOADING_FAILURE = 'ITEMS_LOADING_FAILURE';
 export const ITEMS_GET_ALL = 'ITEMS_GET_ALL';
 export const ITEMS_GET_BY_TERM = 'ITEMS_GET_BY_TERM';
 export const ITEMS_INPUT_CHANGE = 'ITEMS_INPUT_CHANGE';
+
 
 export const itemsLoadingBegin = () => ({
     type: ITEMS_LOADING_BEGIN,
@@ -36,7 +40,8 @@ export function itemsInputChange(term) {
 export function getItemsByTerm(term) {
     return dispatch => {
         dispatch(itemsLoadingBegin());
-        let url = "http://localhost:8890/api/items?s="+term;
+        console.log(host);
+        let url = host+"/api/items?s="+term;
         return fetch(encodeURI(url)
             , {
                 method: "GET",
@@ -51,7 +56,7 @@ export function getItemsByTerm(term) {
 export function getAllItems() {
     return dispatch => {
         dispatch(itemsLoadingBegin());
-        let url = "http://localhost:8890/api/items";
+        let url = host+"/api/items";
         return fetch(encodeURI(url)
             , {
                 method: "GET",

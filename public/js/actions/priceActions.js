@@ -1,12 +1,9 @@
-import constants from '../utils/constants';
-import {ITEM_CLEAR_STATE, itemClearState} from "./itemActions";
+import {host} from '../utils/constants';
 
 export const PRICE_LOADING_BEGIN   = 'PRICES_LOADING_BEGIN';
 export const PRICE_LOADING_FAILURE = 'PRICES_LOADING_FAILURE';
 export const PRICE_ADD = 'PRICES_ADD';
 export const PRICE_CLEAR_STATE = 'PRICES_CLEAR_STATE';
-
-
 
 export const priceLoadingBegin = () => ({
     type: PRICE_LOADING_BEGIN,
@@ -33,7 +30,7 @@ export function clearPriceState() {
 export function addPrice(itemWithPrice) {
     return dispatch => {
         dispatch(priceLoadingBegin());
-        let url = "http://localhost:8890/api/price";
+        let url = host+"/api/price";
         return fetch(encodeURI(url)
             , {
                 method: "POST",

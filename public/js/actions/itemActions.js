@@ -1,4 +1,4 @@
-import constants from '../utils/constants';
+import {host} from '../utils/constants';
 
 export const ITEM_LOADING_BEGIN   = 'ITEM_LOADING_BEGIN';
 export const ITEM_LOADING_FAILURE = 'ITEM_LOADING_FAILURE';

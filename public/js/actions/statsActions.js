@@ -1,3 +1,5 @@
+import {host} from '../utils/constants';
+
 export const STATS_LOADING_BEGIN   = 'STATS_LOADING_BEGIN';
 export const STATS_LOADING_FAILURE = 'STATS_LOADING_FAILURE';
 export const STATS_GET_STATS = 'STATS_GET_STATS';
@@ -20,7 +22,7 @@ export const statsGet = (resultJson) => ({
 export function getStats() {
     return dispatch => {
         dispatch(statsLoadingBegin());
-        let url = "http://localhost:8890/api/stats";
+        let url = host+"/api/stats";
         return fetch(encodeURI(url)
             , {
                 method: "GET"

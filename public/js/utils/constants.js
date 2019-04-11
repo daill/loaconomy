@@ -11,3 +11,5 @@ export const monthNames = [
     "Aug", "Sep", "Oct",
     "Nov", "Dec"
 ];
+
+export const host = window.location.protocol + "//" + window.location.hostname + (location.port ? ':'+location.port: '');

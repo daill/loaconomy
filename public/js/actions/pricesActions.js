@@ -1,12 +1,9 @@
-import constants from '../utils/constants';
-import {ITEM_CLEAR_STATE, itemClearState} from "./itemActions";
+import {host} from '../utils/constants';
 
 export const PRICES_LOADING_BEGIN   = 'PRICES_LOADING_BEGIN';
 export const PRICES_LOADING_FAILURE = 'PRICES_LOADING_FAILURE';
 export const PRICES_GET = 'PRICES_GET';
 export const PRICES_CLEAR_STATE = 'PRICES_CLEAR_STATE';
-
-
 
 export const pricesLoadingBegin = () => ({
     type: PRICES_LOADING_BEGIN,
@@ -36,7 +33,7 @@ export function getItemPrices(values, from, size, page, sortParam, sortOrder) {
     return dispatch => {
         dispatch(pricesLoadingBegin());
 
-        let url = "http://localhost:8890/api/prices?i="+values.item + "&s=" + values.server + "&f=" + from + "&c=" + size;
+        let url = host+"/api/prices?i="+values.item + "&s=" + values.server + "&f=" + from + "&c=" + size;
         if (sortParam) {
             url = url + "&sp=" + sortParam
         }
@@ -67,7 +64,7 @@ export function clearPricesState() {
 export function addItemPrice(itemWithPrice) {
     return dispatch => {
         dispatch(pricesLoadingBegin());
-        let url = "http://localhost:8890/api/price";
+        let url = host+"/api/price";
         return fetch(encodeURI(url)
             , {
                 method: "POST",

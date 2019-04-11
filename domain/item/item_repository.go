@@ -46,7 +46,16 @@ func (e *elasticItemRepository) GetLastSeenPrices(term, server string, period in
 
 	var result bytes.Buffer
 	var aggBytes []byte
+
+
+
 	result.WriteString("{")
+
+	if searchResult.Hits.TotalHits == 0 {
+		result.WriteString("}")
+		return result.Bytes(), nil
+	}
+
 	aggBytes, err = json.Marshal(searchResult.Aggregations)
 	result.Write(aggBytes[1:len(aggBytes)-1])
 
@@ -148,8 +157,6 @@ func (e *elasticItemRepository) GetItemPrices(term, server string, sortParam []s
 		b = append(b, []byte(idString)...)
 		hitArray[index] = json.RawMessage(b)
 	}
-
-
 
 	var buf bytes.Buffer
 

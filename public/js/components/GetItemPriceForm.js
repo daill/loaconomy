@@ -1,14 +1,9 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import $ from "jquery";
 import '../../ext/js/bootstrap';
 import { css } from '@emotion/core';
-import { PulseLoader } from 'react-spinners';
 import { Field, reset, reduxForm } from 'redux-form'
-import AutoSuggest from 'react-autosuggest';
 import AutoSuggestField from './AutoSuggestField';
-import {addItemPrice, cleareItemState} from '../actions/itemActions';
 import {maxValue25, maxValue3, maxValue99, minValue0} from "../utils/utils";
 import defaults from "../utils/constants";
 
